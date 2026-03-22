@@ -11,7 +11,9 @@ import {
     html,
     javascript,
     linux,
-    me,
+    mrKhojiakbar,
+
+
     meta,
     mobile,
     mongodb,
@@ -31,7 +33,7 @@ import {
     web
 } from "../assets";
 
-export const myGithub = "https://github.com/Abduqayum77";
+export const myGithub = "https://github.com/ismatullaevx";
 export const CVDuncan = cvDuncan;
 export const MyCV = myCV;
 
@@ -56,13 +58,10 @@ const services = [
         icon: web,
     },
     {
-        title: "Backend Developer",
+        title: "Frontend Developer",
         icon: backend,
     },
-    {
-        title: "Vue Developer",
-        icon: mobile,
-    },
+
     {
         title: "React Developer",
         icon: creator,
@@ -368,11 +367,11 @@ const projects = [
 const myWords = [
     {
         text: "Here you can download my СV by clicking on Download button. I will be glad to our cooperation.",
-        name: "Abdukayum Sotvoldiev",
+        name: "Khojiakbar Ismatullaev",
         designation: "The owner",
         company: "ILALEX",
-        image: me,
+        image: mrKhojiakbar,
     },
 ];
 
-export {services, technologies, experiences, testimonials, projects, myWords};
+export { services, technologies, experiences, testimonials, projects, myWords };

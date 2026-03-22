@@ -29,7 +29,7 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915EFF]">Abdukayum</span>
+            Hi, I'm <span className="text-[#915EFF]">Khojiakbar</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-lg`}>
             {text}

@@ -6,7 +6,7 @@ import { styles } from "../styles";
 import { services } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
-import { me } from "../assets";
+import { mrKhojiakbar } from "../assets";
 
 const ServiceCard = ({ index, title, icon }) => {
   return (
@@ -42,7 +42,7 @@ const About = () => {
         className="flex items-center min-[1000px]:flex-row flex-col-reverse"
       >
         <p className="mt-4 text-secondary text-[17px] min-[1000px]:max-w-lg w-full leading-[30px]">
-          Hey! I'm Abdukayum. I'm 28 years old and I'm from Namangan,
+          Hey! I'm Khojiakbar. I'm 18 years old and I'm from Namangan,
           Uzbekistan. I have been actively engaged in web development for almost
           1 year and constantly study new technologies and try to apply them.
           I'm skilled web full stack developer with experience in React, Vue,
@@ -54,10 +54,10 @@ const About = () => {
         </p>
 
         <Tilt className="xs:w-[350px] xs:h-[350px] w-full h-full m-auto max-[1000px]:my-14">
-          <div className="xs:w-[350px] w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
+          <div className="xs:w-[300px] w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
             <div className="bg-tertiary rounded-[20px] min-h-[250px] flex justify-evenly items-center flex-col overflow-hidden">
               <img
-                src={me}
+                src={mrKhojiakbar}
                 alt="MyPhoto"
                 className="w-full h-full object-contain"
               />

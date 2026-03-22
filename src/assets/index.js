@@ -1,6 +1,8 @@
 import me from "./me.png";
+import mrKhojiakbar from "./mrKhojiakbar.jpg";
+
 import cvDuncan from "./CV_Duncan.png";
-import myCV from "./Abdukayum-CV.pdf";
+import myCV from "./Исматуллаев Хожиакбар Рахматуллаевич (1).pdf";
 import logo from "./logo.svg";
 import backend from "./backend.png";
 import creator from "./creator.png";
@@ -53,6 +55,8 @@ export {
   php,
   vue,
   me,
+  mrKhojiakbar,
+
   logo,
   backend,
   creator,

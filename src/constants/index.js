@@ -35,6 +35,7 @@ import {
 } from "../assets";
 import image from "../assets/image.png";
 import image2 from "../assets/image2.png";
+import image3 from "../assets/image3.png";
 
 export const myGithub = "https://github.com/ismatullaevx";
 export const CVDuncan = cvDuncan;
@@ -203,6 +204,7 @@ const testimonials = [
         image: "https://randomuser.me/api/portraits/men/5.jpg",
     },
     {
+
         testimonial:
             "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
         name: "Lisa Wang",
@@ -272,6 +274,35 @@ const projects = [
         image: image2,
         source_code_link: "https://github.com/ismatullaevx",
         app_link: "https://watermap.uz/map",
+    },
+    {
+        name: "Beaty Point",
+        description: "Beauty Pint is a modern web platform for showcasing beauty products, including skincare, makeup, and personal care items. It features a clean UI, responsive design, and smooth navigation, allowing users to explore products easily and efficiently.The project highlights strong frontend development skills, with a focus on performance, usability, and scalable interface design.",
+        tags: [
+            {
+                name: "React",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "Tailwind CSS",
+                color: "pink-text-gradient",
+            },
+            {
+                name: "typescript",
+                color: "orange-text-gradient",
+            },
+            {
+                name: "Node.js",
+                color: "green-text-gradient",
+            },
+            {
+                name: "Vite",
+                color: "blue-text-gradient",
+            },
+        ],
+        image: image3,
+        source_code_link: "https://github.com/ismatullaevx",
+        app_link: "https://cosmetic-nine-wine.vercel.app/",
     }
 
 

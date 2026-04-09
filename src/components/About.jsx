@@ -54,7 +54,7 @@ const About = () => {
         </p>
 
         <Tilt className="xs:w-[350px] xs:h-[350px] w-full h-full m-auto max-[1000px]:my-14">
-          <div className="xs:w-[300px] w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
+          <div className="xs:w-[280px] w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
             <div className="bg-tertiary rounded-[20px] min-h-[250px] flex justify-evenly items-center flex-col overflow-hidden">
               <img
                 src={mrKhojiakbar}

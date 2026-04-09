@@ -6,6 +6,7 @@ import {
     docker,
     figma,
     fitnessAdmin,
+
     git,
     gym,
     html,
@@ -32,6 +33,8 @@ import {
     vue,
     web
 } from "../assets";
+import image from "../assets/image.png";
+import image2 from "../assets/image2.png";
 
 export const myGithub = "https://github.com/ismatullaevx";
 export const CVDuncan = cvDuncan;
@@ -63,8 +66,12 @@ const services = [
     },
 
     {
-        title: "React Developer",
+        title: "React.js Developer",
         icon: creator,
+    },
+    {
+        title: "Next.js Developer",
+        icon: mobile,
     },
 ];
 
@@ -207,9 +214,9 @@ const testimonials = [
 
 const projects = [
     {
-        name: "Fitness Admin Panel",
+        name: "PowerMap",
         description:
-            "The Fitness Admin Panel is a comprehensive web-based solution designed for managing and overseeing all aspects of a fitness business.",
+            "A nationwide monitoring platform designed for the oversight of electrical infrastructure across Uzbekistan, including substations, power lines, and distribution units. The system provides real-time visibility into equipment locations, operational status, and technical metrics. Authorized personnel can track performance indicators, review maintenance histories, and detect critical issues through an interactive digital map. The platform strengthens coordination between regional energy services, improves response times, and supports data-driven decision-making for stable and efficient power distribution.",
         tags: [
             {
                 name: "React",
@@ -223,26 +230,30 @@ const projects = [
                 name: "javaScript",
                 color: "orange-text-gradient",
             },
+            {
+                name: "Node.js",
+                color: "green-text-gradient",
+            },
+            {
+                name: "Vite",
+                color: "blue-text-gradient",
+            },
         ],
-        image: fitnessAdmin,
-        source_code_link: "https://github.com/Abduqayum77/fitness-admin",
-        app_link: "https://fitnes-admin.netlify.app/",
+        image: image,
+        source_code_link: "https://github.com/ismatullaevx",
+        app_link: "https://powermap.uz/map",
     },
     {
-        name: "Read Book",
+        name: "WaterMap",
         description:
-            "Web application that enables users to read books, upload their own books, change them and delete according to their preferences",
+            "A nationwide monitoring platform designed for the oversight of water infrastructure across Uzbekistan, including water stations, water lines, and distribution units. The system provides real-time visibility into equipment locations, operational status, and technical metrics. Authorized personnel can track performance indicators, review maintenance histories, and detect critical issues through an interactive digital map. The platform strengthens coordination between regional water services, improves response times, and supports data-driven decision-making for stable and efficient water distribution.",
         tags: [
             {
-                name: "php",
+                name: "React",
                 color: "blue-text-gradient",
             },
             {
-                name: "vue JS",
-                color: "green-text-gradient",
-            },
-            {
-                name: "mongoDB",
+                name: "Tailwind CSS",
                 color: "pink-text-gradient",
             },
             {
@@ -250,118 +261,20 @@ const projects = [
                 color: "orange-text-gradient",
             },
             {
-                name: "css",
-                color: "violet-text-gradient",
+                name: "Node.js",
+                color: "green-text-gradient",
             },
-        ],
-        image: readBook,
-        source_code_link: "https://gitlab.com/my-book-project1",
-        app_link: "https://abduqayum77.github.io/Read-Book/",
-    },
-    {
-        name: "Publish Article",
-        description:
-            "A user can publish their articles in the publish content section and then their new articles will automatically be posted on Home page section.",
-        tags: [
             {
-                name: "expressJS",
+                name: "Vite",
                 color: "blue-text-gradient",
             },
-            {
-                name: "mongoDB",
-                color: "green-text-gradient",
-            },
-            {
-                name: "css",
-                color: "pink-text-gradient",
-            },
-            {
-                name: "javaScript",
-                color: "orange-text-gradient",
-            },
-            {
-                name: "html",
-                color: "violet-text-gradient",
-            },
         ],
-        image: publishArticle,
-        source_code_link: "https://github.com/Abduqayum77/publish-article",
-        app_link: "https://odd-cyan-jackrabbit-kilt.cyclic.app",
-    },
-    {
-        name: "My second personal website",
-        description:
-            "This is my second personal website which shows about me - my skills, my projects and contact information.",
-        tags: [
-            {
-                name: "html",
-                color: "green-text-gradient",
-            },
-            {
-                name: "css",
-                color: "pink-text-gradient",
-            },
-            {
-                name: "bootstrap",
-                color: "orange-text-gradient",
-            },
-            {
-                name: "javaScript",
-                color: "orange-text-gradient",
-            },
-        ],
-        image: personalWebsite,
-        source_code_link: "https://github.com/Abduqayum77/personal-website",
-        app_link: "https://abduqayum77.github.io/personal-website/",
-    },
-    {
-        name: "Tindog",
-        description:
-            "A responsive web application which shows available dogs and their prices in a give address.",
-        tags: [
-            {
-                name: "html",
-                color: "green-text-gradient",
-            },
-            {
-                name: "css",
-                color: "pink-text-gradient",
-            },
-            {
-                name: "bootstrap",
-                color: "orange-text-gradient",
-            },
-        ],
-        image: tinDog,
-        source_code_link: "https://github.com/Abduqayum77/-TinDog",
-        app_link: "https://abduqayum77.github.io/-TinDog/",
-    },
-    {
-        name: "Golds Gym",
-        description:
-            "Browse more than one thousand exercises with practical examples, pagination, exercise details, pull related videos from youtube, display similar exercises, and much more.",
-        tags: [
-            {
-                name: "react",
-                color: "blue-text-gradient",
-            },
-            {
-                name: "rapidAPI",
-                color: "green-text-gradient",
-            },
-            {
-                name: "materialUI",
-                color: "pink-text-gradient",
-            },
-            {
-                name: "javaScript",
-                color: "orange-text-gradient",
-            },
-        ],
-        image: gym,
-        source_code_link: "https://github.com/Abduqayum77/gym",
-        app_link: "https://abdukayum-gym.netlify.app",
-    },
+        image: image2,
+        source_code_link: "https://github.com/ismatullaevx",
+        app_link: "https://watermap.uz/map",
+    }
+
+
 ];
 
 const myWords = [

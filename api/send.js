@@ -4,11 +4,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { name, message } = req.body;
+  const { name, emailOrPhone, message } = req.body;
 
   // Basic validation
-  if (!name || !message) {
-    return res.status(400).json({ error: "Name and message are required" });
+  if (!name || !emailOrPhone || !message) {
+    return res.status(400).json({ error: "Name, email/phone and message are required" });
   }
 
   const token = process.env.TELEGRAM_TOKEN;
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   }
 
   // Format message
-  const telegramMessage = `New message:\nName: ${name}\nMessage: ${message}`;
+  const telegramMessage = `📩 <b>New Message!</b>\n\n👤 <b>Name:</b> ${name}\n📞 <b>Contact:</b> ${emailOrPhone}\n💬 <b>Message:</b> ${message}`;
 
   try {
     const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage`;
@@ -31,6 +31,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         chat_id: chatId,
         text: telegramMessage,
+        parse_mode: "HTML",
       }),
     });
 

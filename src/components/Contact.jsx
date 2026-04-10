@@ -10,9 +10,12 @@ const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
+    emailOrPhone: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,9 +25,11 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatusMessage("");
 
-    if (!form.name.trim() || !form.message.trim()) {
-      alert("Please fill in both name and message fields.");
+    if (!form.name.trim() || !form.emailOrPhone.trim() || !form.message.trim()) {
+      setIsError(true);
+      setStatusMessage("Please fill in all fields.");
       return;
     }
 
@@ -38,25 +43,30 @@ const Contact = () => {
         },
         body: JSON.stringify({
           name: form.name,
+          emailOrPhone: form.emailOrPhone,
           message: form.message,
         }),
       });
 
       if (response.ok) {
         setLoading(false);
-        alert("Thank you. I will get back to you as soon as possible.");
+        setIsError(false);
+        setStatusMessage("Thank you. I will get back to you as soon as possible.");
         setForm({
           name: "",
+          emailOrPhone: "",
           message: "",
         });
       } else {
         setLoading(false);
-        alert("Something went wrong.");
+        setIsError(true);
+        setStatusMessage("Something went wrong.");
       }
     } catch (error) {
       setLoading(false);
       console.error(error);
-      alert("Something went wrong.");
+      setIsError(true);
+      setStatusMessage("Something went wrong.");
     }
   };
 
@@ -88,6 +98,17 @@ const Contact = () => {
             />
           </label>
           <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">Email / Phone</span>
+            <input
+              type="text"
+              name="emailOrPhone"
+              value={form.emailOrPhone}
+              onChange={handleChange}
+              placeholder="What's your email or phone number?"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+            />
+          </label>
+          <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Your Message</span>
             <textarea
               rows="7"
@@ -98,6 +119,12 @@ const Contact = () => {
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
+
+          {statusMessage && (
+            <p className={`mt-3 ${isError ? "text-red-500" : "text-green-500"} font-medium`}>
+              {statusMessage}
+            </p>
+          )}
 
           <button
             type="submit"

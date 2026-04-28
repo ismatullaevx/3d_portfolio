@@ -36,6 +36,7 @@ import {
 import image from "../assets/image.png";
 import image2 from "../assets/image2.png";
 import image3 from "../assets/image3.png";
+import practiceImg from "../assets/Screenshot_2026-04-28_19-07-45.png";
 
 export const myGithub = "https://github.com/ismatullaevx";
 export const CVDuncan = cvDuncan;
@@ -303,7 +304,36 @@ const projects = [
         image: image3,
         source_code_link: "https://github.com/ismatullaevx",
         app_link: "https://cosmetic-nine-wine.vercel.app/",
-    }
+    },
+    {
+        name: "Speaking Excellence",
+        description: "Speaking Excellence is an innovative web platform designed to help users improve their English speaking skills. The platform features interactive exercises, AI-powered feedback, and real-time progress tracking, providing a comprehensive environment for language learning and practice. The project demonstrates strong full-stack development capabilities, with a focus on user engagement, performance, and a seamless learning experience.",
+        tags: [
+            {
+                name: "React",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "Tailwind CSS",
+                color: "pink-text-gradient",
+            },
+            {
+                name: "javascript",
+                color: "orange-text-gradient",
+            },
+            {
+                name: "supabase",
+                color: "green-text-gradient",
+            },
+            {
+                name: "Vite",
+                color: "blue-text-gradient",
+            },
+        ],
+        image: practiceImg,
+        source_code_link: "https://github.com/ismatullaevx",
+        app_link: "https://speaking-for-english.vercel.app/",
+    },
 
 
 ];

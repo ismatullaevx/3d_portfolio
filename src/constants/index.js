@@ -1,3 +1,5 @@
+import { FaLaptopCode, FaReact, FaCode } from "react-icons/fa";
+import { RiNextjsFill } from "react-icons/ri";
 import {
   backend,
   creator,
@@ -51,20 +53,20 @@ export const navLinks = [
 const services = [
   {
     title: "Web Developer",
-    icon: web,
+    icon: FaLaptopCode,
   },
   {
     title: "Frontend Developer",
-    icon: backend,
+    icon: FaCode,
   },
 
   {
     title: "React.js Developer",
-    icon: creator,
+    icon: FaReact,
   },
   {
     title: "Next.js Developer",
-    icon: mobile,
+    icon: RiNextjsFill,
   },
 ];
 

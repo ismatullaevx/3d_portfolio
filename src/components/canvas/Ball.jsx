@@ -1,3 +1,5 @@
+import React, { Suspense, useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import {
   Decal,
   Float,
@@ -5,8 +7,6 @@ import {
   Preload,
   useTexture,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import React, { Suspense } from "react";
 
 import CanvasLoader from "../Loader";
 
@@ -37,6 +37,37 @@ const Ball = (props) => {
 };
 
 const BallCanvas = ({ icon }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+
+    // Set the initial value of the `isMobile` state variable
+    setIsMobile(mediaQuery.matches);
+
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    };
+
+    // Add the callback function as a listener for changes to the media query
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    // Remove the listener when the component is unmounted
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className="flex justify-center items-center w-full h-full bg-[#fff8eb] rounded-full shadow-card">
+        <img src={icon} alt="ball" className="w-16 h-16 object-contain" />
+      </div>
+    );
+  }
+
   return (
     <Canvas
       frameloop="always"

@@ -2,7 +2,7 @@ import me from "./me.png";
 import mrKhojiakbar from "./mrKhojiakbar.jpg";
 
 import cvDuncan from "./CV_Duncan.png";
-import myCV from "./Исматуллаев Хожиакбар Рахматуллаевич (1).pdf";
+import myCV from "./cv.pdf";
 import logo from "./logo.svg";
 import backend from "./backend.png";
 import creator from "./creator.png";
@@ -38,16 +38,8 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
-import gym from "./projects/gym.png";
-import readBook from "./projects/readBook.png";
-import publishArticle from "./projects/publish article.png";
-import tinDog from "./projects/tinDog.png";
-import simonGame from "./projects/simonGame.png";
-import personalWebsite from "./projects/personal-website.png";
-import fitnessAdmin from "./projects/fitness-admin.png";
 
 export {
-  fitnessAdmin,
   myCV,
   cvDuncan,
   linux,
@@ -56,7 +48,6 @@ export {
   vue,
   me,
   mrKhojiakbar,
-
   logo,
   backend,
   creator,
@@ -85,10 +76,4 @@ export {
   carrent,
   jobit,
   tripguide,
-  gym,
-  readBook,
-  publishArticle,
-  tinDog,
-  simonGame,
-  personalWebsite,
 };

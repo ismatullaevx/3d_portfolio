@@ -21,7 +21,7 @@ const ServiceCard = ({ index, title, icon }) => {
       className="xs:w-[250px] w-full"
     >
       <motion.div
-        variants={shouldReduceMotion ? {} : fadeIn("right", "spring", 0.5 * index, 0.75)}
+        variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("right", "spring", 0.5 * index, 0.75)}
         className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
       >
         <div
@@ -48,13 +48,13 @@ const About = () => {
 
   return (
     <>
-      <motion.div variants={shouldReduceMotion ? {} : textVariant()}>
+      <motion.div variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>Overview.</h2>
       </motion.div>
 
       <motion.div
-        variants={shouldReduceMotion ? {} : fadeIn("", "", 0.1, 1)}
+        variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("", "", 0.1, 1)}
         className="flex items-center min-[1000px]:flex-row flex-col-reverse"
       >
         <p className="mt-4 text-secondary text-[17px] min-[1000px]:max-w-lg w-full leading-[30px]">

@@ -21,7 +21,7 @@ const ProjectCard = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div variants={shouldReduceMotion ? {} : fadeIn("up", "spring", index * 0.5, 0.75)}>
+    <motion.div variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Tilt
         options={{ 
           max: shouldReduceMotion ? 0 : 45, 
@@ -79,14 +79,14 @@ const Works = () => {
 
   return (
     <>
-      <motion.div variants={shouldReduceMotion ? {} : textVariant()}>
+      <motion.div variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : textVariant()}>
         <p className={`${styles.sectionSubText}`}>MY WORK</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
       </motion.div>
 
       <div className="w-full flex">
         <motion.p
-          variants={shouldReduceMotion ? {} : fadeIn("", "", 0.1, 1)}
+          variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
           Following projects showcases my skills and experience through

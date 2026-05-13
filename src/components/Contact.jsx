@@ -6,6 +6,8 @@ import { SectionWrapper } from "../hoc";
 import { EarthCanvas } from "./canvas";
 import { slideIn } from "../utils/motion";
 import useReducedMotion from "../hooks/useReducedMotion";
+import ErrorBoundary from "./ErrorBoundary";
+import CanvasErrorFallback from "./CanvasErrorFallback";
 
 const Contact = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -141,9 +143,11 @@ const Contact = () => {
         variants={shouldReduceMotion ? { hidden: { x: 0, y: 0 }, show: { x: 0, y: 0 } } : slideIn("right", "tween", 0.2, 1)}
         className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
-        <Suspense fallback={<ComponentLoader />}>
-          <EarthCanvas />
-        </Suspense>
+        <ErrorBoundary fallback={<CanvasErrorFallback />}>
+          <Suspense fallback={<ComponentLoader />}>
+            <EarthCanvas />
+          </Suspense>
+        </ErrorBoundary>
       </motion.div>
     </div>
   );

@@ -2,8 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import { MotionConfig } from "framer-motion";
 
-import { Navbar, Hero } from "./components";
-import ComponentLoader from "./components/ComponentLoader";
+import { Navbar, Hero, ErrorBoundary, ComponentLoader, CanvasErrorFallback } from "./components";
 
 const About = lazy(() => import("./components/About"));
 const Tech = lazy(() => import("./components/Tech"));
@@ -16,43 +15,61 @@ const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
 const App = () => {
   return (
     <BrowserRouter>
-      <MotionConfig reducedMotion="user">
-        <div className="relative z-0 bg-primary">
-          <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-            <Navbar />
-            <Hero />
+      <ErrorBoundary>
+        <MotionConfig reducedMotion="user">
+          <div className="relative z-0 bg-primary">
+            <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+              <Navbar />
+              <ErrorBoundary>
+                <Hero />
+              </ErrorBoundary>
+            </div>
+            
+            <ErrorBoundary>
+              <Suspense fallback={<ComponentLoader />}>
+                <About />
+              </Suspense>
+            </ErrorBoundary>
+
+            <ErrorBoundary>
+              <Suspense fallback={<ComponentLoader />}>
+                <Tech />
+              </Suspense>
+            </ErrorBoundary>
+
+            <ErrorBoundary>
+              <Suspense fallback={<ComponentLoader />}>
+                <Works />
+              </Suspense>
+            </ErrorBoundary>
+
+            <ErrorBoundary>
+              <Suspense fallback={<ComponentLoader />}>
+                <CV />
+              </Suspense>
+            </ErrorBoundary>
+
+            <div className="relative z-0">
+              <ErrorBoundary>
+                <Suspense fallback={<ComponentLoader />}>
+                  <Contact />
+                </Suspense>
+              </ErrorBoundary>
+              <ErrorBoundary fallback={<CanvasErrorFallback />}>
+                <Suspense fallback={null}>
+                  <StarsCanvas />
+                </Suspense>
+              </ErrorBoundary>
+            </div>
+
+            <ErrorBoundary>
+              <Suspense fallback={null}>
+                <Footer />
+              </Suspense>
+            </ErrorBoundary>
           </div>
-          
-          <Suspense fallback={<ComponentLoader />}>
-            <About />
-          </Suspense>
-
-          <Suspense fallback={<ComponentLoader />}>
-            <Tech />
-          </Suspense>
-
-          <Suspense fallback={<ComponentLoader />}>
-            <Works />
-          </Suspense>
-
-          <Suspense fallback={<ComponentLoader />}>
-            <CV />
-          </Suspense>
-
-          <div className="relative z-0">
-            <Suspense fallback={<ComponentLoader />}>
-              <Contact />
-            </Suspense>
-            <Suspense fallback={null}>
-              <StarsCanvas />
-            </Suspense>
-          </div>
-
-          <Suspense fallback={null}>
-            <Footer />
-          </Suspense>
-        </div>
-      </MotionConfig>
+        </MotionConfig>
+      </ErrorBoundary>
     </BrowserRouter>
   );
 };

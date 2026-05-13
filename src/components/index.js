@@ -14,6 +14,10 @@ import Feedbacks from "./Feedbacks";
 import Contact from "./Contact";
 import CV from "./CV";
 import Footer from "./Footer";
+import ComponentLoader from "./ComponentLoader";
+
+import ErrorBoundary from "./ErrorBoundary";
+import CanvasErrorFallback from "./CanvasErrorFallback";
 
 export {
   Hero,
@@ -30,4 +34,7 @@ export {
   StarsCanvas,
   CV,
   Footer,
+  ComponentLoader,
+  ErrorBoundary,
+  CanvasErrorFallback,
 };

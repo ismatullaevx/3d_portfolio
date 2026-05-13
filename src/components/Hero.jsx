@@ -4,6 +4,8 @@ import { styles } from "../styles";
 import React, { Suspense } from "react";
 import ComponentLoader from "./ComponentLoader";
 import { ComputersCanvas } from "./canvas";
+import ErrorBoundary from "./ErrorBoundary";
+import CanvasErrorFallback from "./CanvasErrorFallback";
 import useReducedMotion from "../hooks/useReducedMotion";
 import usePerformance from "../hooks/usePerformance";
 
@@ -43,9 +45,11 @@ const Hero = () => {
         </div>
       </div>
 
-      <Suspense fallback={<ComponentLoader />}>
-        <ComputersCanvas />
-      </Suspense>
+      <ErrorBoundary fallback={<CanvasErrorFallback />}>
+        <Suspense fallback={<ComponentLoader />}>
+          <ComputersCanvas />
+        </Suspense>
+      </ErrorBoundary>
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">

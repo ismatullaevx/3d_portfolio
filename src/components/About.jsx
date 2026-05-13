@@ -7,6 +7,7 @@ import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import { mrKhojiakbar } from "../assets";
 import useReducedMotion from "../hooks/useReducedMotion";
+import { ModernImage } from "./";
 
 const ServiceCard = ({ index, title, icon }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -28,7 +29,7 @@ const ServiceCard = ({ index, title, icon }) => {
           className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
         >
           {typeof icon === "string" ? (
-            <img src={icon} alt={title} className="w-16 h-16 object-contain" />
+            <ModernImage src={icon} alt={title} className="w-16 h-16 object-contain" />
           ) : (
             <div className="text-[60px] text-white">
               {React.createElement(icon)}
@@ -79,7 +80,7 @@ const About = () => {
         >
           <div className="xs:w-[280px] w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
             <div className="bg-tertiary rounded-[20px] min-h-[250px] flex justify-evenly items-center flex-col overflow-hidden">
-              <img
+              <ModernImage
                 src={mrKhojiakbar}
                 alt="MyPhoto"
                 className="w-full h-full object-contain"

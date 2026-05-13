@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Tilt } from "react-tilt";
+import React from "react";
 
 import { styles } from "../styles";
 import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { myGithub, projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
-import React from "react";
 import useReducedMotion from "../hooks/useReducedMotion";
+import { ModernImage } from "./";
 
 const ProjectCard = ({
   index,
@@ -31,7 +32,7 @@ const ProjectCard = ({
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
       >
         <div className="relative w-full h-[230px]">
-          <img
+          <ModernImage
             src={image}
             alt="project_image"
             className="w-full h-full object-cover rounded-2xl"
@@ -42,7 +43,7 @@ const ProjectCard = ({
               onClick={() => window.open(source_code_link, "_blank")}
               className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
             >
-              <img
+              <ModernImage
                 src={github}
                 alt="source code"
                 className="w-1/2 h-1/2 object-contain"
@@ -114,7 +115,7 @@ const Works = () => {
           onClick={() => window.open(myGithub, "_blank")}
         >
           <div className="bg-tertiary rounded-full px-3 py-2 flex justify-evenly items-center">
-            <img
+            <ModernImage
               src={github}
               alt="source code"
               className="w-[40px] h-[40px] object-contain"

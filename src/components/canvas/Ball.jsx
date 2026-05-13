@@ -10,6 +10,7 @@ import {
 
 import CanvasLoader from "../Loader";
 import useReducedMotion from "../../hooks/useReducedMotion";
+import ModernImage from "../ModernImage";
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
@@ -71,7 +72,7 @@ const BallCanvas = ({ icon }) => {
   if (isMobile || shouldReduceMotion) {
     return (
       <div className="flex justify-center items-center w-full h-full bg-[#fff8eb] rounded-full shadow-card">
-        <img src={icon} alt="ball" className="w-16 h-16 object-contain" />
+        <ModernImage src={icon} alt="ball" className="w-16 h-16 object-contain" />
       </div>
     );
   }

@@ -18,6 +18,7 @@ import ComponentLoader from "./ComponentLoader";
 
 import ErrorBoundary from "./ErrorBoundary";
 import CanvasErrorFallback from "./CanvasErrorFallback";
+import ModernImage from "./ModernImage";
 
 export {
   Hero,
@@ -37,4 +38,5 @@ export {
   ComponentLoader,
   ErrorBoundary,
   CanvasErrorFallback,
+  ModernImage,
 };

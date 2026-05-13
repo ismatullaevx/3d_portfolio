@@ -1,43 +1,43 @@
-import me from "./me.png";
-import mrKhojiakbar from "./mrKhojiakbar.jpg";
+import me from "./me.webp";
+import mrKhojiakbar from "./mrKhojiakbar.webp";
 
-import cvDuncan from "./CV_Duncan.png";
+import cvDuncan from "./CV_Duncan.webp";
 import myCV from "./cv.pdf";
 import logo from "./logo.svg";
-import backend from "./frontend.png";
-import creator from "./react.png";
-import mobile from "./next.png";
-import web from "./webIcon.png";
-import github from "./github.png";
+import backend from "./frontend.webp";
+import creator from "./react.webp";
+import mobile from "./next.webp";
+import web from "./webIcon.webp";
+import github from "./github.webp";
 import menu from "./menu.svg";
 import close from "./close.svg";
 
-import vue from "./tech/vue.png";
-import php from "./tech/php.png";
-import symfony from "./tech/symfony.png";
-import css from "./tech/css.png";
-import docker from "./tech/docker.png";
-import figma from "./tech/figma.png";
-import git from "./tech/git.png";
-import html from "./tech/html.png";
-import javascript from "./tech/javascript.png";
-import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
-import reactjs from "./tech/reactjs.png";
-import redux from "./tech/redux.png";
-import tailwind from "./tech/tailwind.png";
-import typescript from "./tech/typescript.png";
+import vue from "./tech/vue.webp";
+import php from "./tech/php.webp";
+import symfony from "./tech/symfony.webp";
+import css from "./tech/css.webp";
+import docker from "./tech/docker.webp";
+import figma from "./tech/figma.webp";
+import git from "./tech/git.webp";
+import html from "./tech/html.webp";
+import javascript from "./tech/javascript.webp";
+import mongodb from "./tech/mongodb.webp";
+import nodejs from "./tech/nodejs.webp";
+import reactjs from "./tech/reactjs.webp";
+import redux from "./tech/redux.webp";
+import tailwind from "./tech/tailwind.webp";
+import typescript from "./tech/typescript.webp";
 import threejs from "./tech/threejs.svg";
-import linux from "./tech/linux.png";
+import linux from "./tech/linux.webp";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+import meta from "./company/meta.webp";
+import shopify from "./company/shopify.webp";
+import starbucks from "./company/starbucks.webp";
+import tesla from "./company/tesla.webp";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import carrent from "./carrent.webp";
+import jobit from "./jobit.webp";
+import tripguide from "./tripguide.webp";
 
 export {
   myCV,

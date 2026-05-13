@@ -1,8 +1,6 @@
 import { FaLaptopCode, FaReact, FaCode } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
 import {
-  backend,
-  creator,
   css,
   cvDuncan,
   docker,
@@ -13,7 +11,6 @@ import {
   linux,
   mrKhojiakbar,
   meta,
-  mobile,
   mongodb,
   myCV,
   php,
@@ -24,7 +21,6 @@ import {
   tailwind,
   tesla,
   vue,
-  web,
 } from "../assets";
 import image from "../assets/image.png";
 import image2 from "../assets/image2.png";

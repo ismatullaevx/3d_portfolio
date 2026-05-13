@@ -6,20 +6,29 @@ import { services } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import { mrKhojiakbar } from "../assets";
+import useReducedMotion from "../hooks/useReducedMotion";
 
 const ServiceCard = ({ index, title, icon }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <Tilt className="xs:w-[250px] w-full">
+    <Tilt 
+      options={{ 
+        max: shouldReduceMotion ? 0 : 45, 
+        scale: shouldReduceMotion ? 1 : 1, 
+        speed: shouldReduceMotion ? 0 : 450 
+      }}
+      className="xs:w-[250px] w-full"
+    >
       <motion.div
-        variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
+        variants={shouldReduceMotion ? {} : fadeIn("right", "spring", 0.5 * index, 0.75)}
         className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
       >
         <div
-          options={{ max: 45, scale: 1, speed: 450 }}
           className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
         >
           {typeof icon === "string" ? (
-            <img src={icon} alt={title} className="w-45 h-45 object-contain" />
+            <img src={icon} alt={title} className="w-16 h-16 object-contain" />
           ) : (
             <div className="text-[60px] text-white">
               {React.createElement(icon)}
@@ -35,22 +44,24 @@ const ServiceCard = ({ index, title, icon }) => {
 };
 
 const About = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={shouldReduceMotion ? {} : textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>Overview.</h2>
       </motion.div>
 
-      <div
-        variants={fadeIn("", "", 0.1, 1)}
+      <motion.div
+        variants={shouldReduceMotion ? {} : fadeIn("", "", 0.1, 1)}
         className="flex items-center min-[1000px]:flex-row flex-col-reverse"
       >
         <p className="mt-4 text-secondary text-[17px] min-[1000px]:max-w-lg w-full leading-[30px]">
-          Hey! I'm Khojiakbar. I'm 18 years old and I'm from Namangan,
+          Hey! I&apos;m Khojiakbar. I&apos;m 18 years old and I&apos;m from Namangan,
           Uzbekistan. I have been actively engaged in web development for almost
           1 year and constantly study new technologies and try to apply them.
-          I'm skilled web full stack developer with experience in React, Vue,
+          I&apos;m skilled web full stack developer with experience in React, Vue,
           Symfony and PHP. I can and love to work in a team. I can organize
           myself for remote work. The experience gained is not just in the
           treasury of skills, but is actively used in product development. I
@@ -58,7 +69,14 @@ const About = () => {
           self-study.
         </p>
 
-        <Tilt className="xs:w-[350px] xs:h-[350px] w-full h-full m-auto max-[1000px]:my-14">
+        <Tilt 
+          className="xs:w-[350px] xs:h-[350px] w-full h-full m-auto max-[1000px]:my-14"
+          options={{ 
+            max: shouldReduceMotion ? 0 : 45, 
+            scale: shouldReduceMotion ? 1 : 1, 
+            speed: shouldReduceMotion ? 0 : 450 
+          }}
+        >
           <div className="xs:w-[280px] w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
             <div className="bg-tertiary rounded-[20px] min-h-[250px] flex justify-evenly items-center flex-col overflow-hidden">
               <img
@@ -69,7 +87,7 @@ const About = () => {
             </div>
           </div>
         </Tilt>
-      </div>
+      </motion.div>
       <div className="mt-20 flex flex-wrap gap-10 justify-center">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
@@ -79,4 +97,6 @@ const About = () => {
   );
 };
 
-export default SectionWrapper(About, "about");
+const AboutSection = SectionWrapper(About, "about");
+
+export default AboutSection;

@@ -9,12 +9,18 @@ import {
 } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
+import useReducedMotion from "../../hooks/useReducedMotion";
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
+    <Float 
+      speed={shouldReduceMotion ? 0 : 1.75} 
+      rotationIntensity={shouldReduceMotion ? 0 : 1} 
+      floatIntensity={shouldReduceMotion ? 0 : 2}
+    >
       <ambientLight intensity={0.25} />
       <directionalLight position={[0, 0, 0.05]} />
       <mesh castShadow receiveShadow scale={2.75}>
@@ -71,8 +77,8 @@ const BallCanvas = ({ icon }) => {
   return (
     <Canvas
       frameloop="always"
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
+      dpr={[1, 1.5]}
+      gl={{ preserveDrawingBuffer: true, powerPreference: "high-performance" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />

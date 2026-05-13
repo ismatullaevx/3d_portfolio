@@ -3,9 +3,11 @@ import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import React from "react";
+import useReducedMotion from "../hooks/useReducedMotion";
 
 const Hero = () => {
-  const [text, count] = useTypewriter({
+  const shouldReduceMotion = useReducedMotion();
+  const [text] = useTypewriter({
     words: [
       "I'm Web Full Stack Developer",
       "I'm Entrepreneur",
@@ -29,7 +31,7 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915EFF]">Khojiakbar</span>
+            Hi, I&apos;m <span className="text-[#915EFF]">Khojiakbar</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-lg`}>
             {text}
@@ -44,7 +46,7 @@ const Hero = () => {
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
-              animate={{
+              animate={shouldReduceMotion ? {} : {
                 y: [0, 24, 0],
               }}
               transition={{

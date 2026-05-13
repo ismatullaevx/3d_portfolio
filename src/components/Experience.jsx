@@ -10,6 +10,7 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 import React from "react";
+import useReducedMotion from "../hooks/useReducedMotion";
 
 const ExperienceCard = ({ experience }) => (
   <VerticalTimelineElement
@@ -51,9 +52,11 @@ const ExperienceCard = ({ experience }) => (
 );
 
 const Experience = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={shouldReduceMotion ? {} : textVariant()}>
         <p className={styles.sectionSubText}>What I have done so far</p>
         <h2 className={styles.sectionHeadText}>Work Experience.</h2>
       </motion.div>

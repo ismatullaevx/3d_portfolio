@@ -34,8 +34,8 @@ const Hero = () => {
             Hi, I&apos;m <span className="text-[#915EFF]">Khojiakbar</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-lg`}>
-            {text}
-            <Cursor cursorColor="#915eff" />
+            {shouldReduceMotion ? "I'm Web Full Stack Developer" : text}
+            {!shouldReduceMotion && <Cursor cursorColor="#915eff" />}
           </p>
         </div>
       </div>
@@ -46,9 +46,13 @@ const Hero = () => {
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
-              animate={shouldReduceMotion ? {} : {
-                y: [0, 24, 0],
-              }}
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      y: [0, 24, 0],
+                    }
+              }
               transition={{
                 duration: 1.5,
                 repeat: Infinity,

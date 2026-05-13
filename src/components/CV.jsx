@@ -5,6 +5,7 @@ import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { CVDuncan, MyCV, myWords } from "../constants";
+import useReducedMotion from "../hooks/useReducedMotion";
 
 const Card = ({ index, text, name, designation, company, image }) => (
   <div className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full select-none">
@@ -31,15 +32,17 @@ const Card = ({ index, text, name, designation, company, image }) => (
 );
 
 const CV = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="bg-black-100 rounded-[20px]">
       <div
         className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
       >
-        <div variants={textVariant()}>
+        <motion.div variants={shouldReduceMotion ? {} : textVariant()}>
           <p className={styles.sectionSubText}>For employers</p>
           <h2 className={styles.sectionHeadText}>My CV.</h2>
-        </div>
+        </motion.div>
       </div>
       <div
         className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7 justify-center select-none`}

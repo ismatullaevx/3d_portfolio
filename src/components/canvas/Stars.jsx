@@ -3,13 +3,15 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import React, { Suspense, useRef, useState } from "react";
 import * as random from "maath/random/dist/maath-random.esm";
 import useReducedMotion from "../../hooks/useReducedMotion";
+import usePerformance from "../../hooks/usePerformance";
 
 const Stars = (props) => {
   const ref = useRef();
+  const isLowEnd = usePerformance();
   const shouldReduceMotion = useReducedMotion();
 
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5001), { radius: 1.2 })
+    random.inSphere(new Float32Array(isLowEnd ? 1500 : 5001), { radius: 1.2 })
   );
 
   useFrame((state, delta) => {
@@ -33,13 +35,14 @@ const Stars = (props) => {
     </group>
   );
 };
-
 const StarsCanvas = () => {
+  const isLowEnd = usePerformance();
+
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">
       <Canvas 
         camera={{ position: [0, 0, 1] }}
-        dpr={[1, 1.5]} // Performance optimization: limit DPR
+        dpr={isLowEnd ? 1 : [1, 1.5]} // Performance optimization: limit DPR
         gl={{ powerPreference: "high-performance", antialias: false }} // Performance optimization
       >
         <Suspense fallback={null}>

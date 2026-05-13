@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import React, { useRef, useState } from "react";
-
+import React, { useRef, useState, Suspense } from "react";
+import ComponentLoader from "./ComponentLoader";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { EarthCanvas } from "./canvas";
@@ -141,7 +141,9 @@ const Contact = () => {
         variants={shouldReduceMotion ? { hidden: { x: 0, y: 0 }, show: { x: 0, y: 0 } } : slideIn("right", "tween", 0.2, 1)}
         className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
-        <EarthCanvas />
+        <Suspense fallback={<ComponentLoader />}>
+          <EarthCanvas />
+        </Suspense>
       </motion.div>
     </div>
   );

@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { styles } from "../styles";
+import React, { Suspense } from "react";
+import ComponentLoader from "./ComponentLoader";
 import { ComputersCanvas } from "./canvas";
-import React from "react";
 import useReducedMotion from "../hooks/useReducedMotion";
+import usePerformance from "../hooks/usePerformance";
 
 const Hero = () => {
   const shouldReduceMotion = useReducedMotion();
+  const isLowEnd = usePerformance();
   const [text] = useTypewriter({
     words: [
       "I'm Web Full Stack Developer",
@@ -40,14 +43,16 @@ const Hero = () => {
         </div>
       </div>
 
-      <ComputersCanvas />
+      <Suspense fallback={<ComponentLoader />}>
+        <ComputersCanvas />
+      </Suspense>
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
               animate={
-                shouldReduceMotion
+                shouldReduceMotion || isLowEnd
                   ? {}
                   : {
                       y: [0, 24, 0],

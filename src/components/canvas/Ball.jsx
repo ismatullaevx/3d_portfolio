@@ -16,9 +16,9 @@ const Ball = (props) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <Float 
-      speed={shouldReduceMotion ? 0 : 1.75} 
-      rotationIntensity={shouldReduceMotion ? 0 : 1} 
+    <Float
+      speed={shouldReduceMotion ? 0 : 1.75}
+      rotationIntensity={shouldReduceMotion ? 0 : 1}
       floatIntensity={shouldReduceMotion ? 0 : 2}
     >
       <ambientLight intensity={0.25} />
@@ -66,7 +66,9 @@ const BallCanvas = ({ icon }) => {
     };
   }, []);
 
-  if (isMobile) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (isMobile || shouldReduceMotion) {
     return (
       <div className="flex justify-center items-center w-full h-full bg-[#fff8eb] rounded-full shadow-card">
         <img src={icon} alt="ball" className="w-16 h-16 object-contain" />
@@ -76,7 +78,7 @@ const BallCanvas = ({ icon }) => {
 
   return (
     <Canvas
-      frameloop="always"
+      frameloop="demand"
       dpr={[1, 1.5]}
       gl={{ preserveDrawingBuffer: true, powerPreference: "high-performance" }}
     >

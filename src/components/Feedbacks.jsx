@@ -1,10 +1,11 @@
+import React from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { testimonials } from "../constants";
-import React from "react";
+import useReducedMotion from "../hooks/useReducedMotion";
 
 const FeedbackCard = ({
   index,
@@ -13,11 +14,14 @@ const FeedbackCard = ({
   designation,
   company,
   image,
-}) => (
-  <motion.div
-    variants={fadeIn("", "spring", index * 0.5, 0.75)}
-    className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full"
-  >
+}) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("", "spring", index * 0.5, 0.75)}
+      className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full"
+    >
     <p className="text-white font-black text-[48px]">"</p>
 
     <div className="mt-1">
@@ -41,16 +45,19 @@ const FeedbackCard = ({
         />
       </div>
     </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 const Feedbacks = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="mt-12 bg-black-100 rounded-[20px]">
       <div
         className={`${styles.padding} bg-tertiary rounded-2xl min-h-[300px]`}
       >
-        <motion.div variants={textVariant()}>
+        <motion.div variants={shouldReduceMotion ? {} : textVariant()}>
           <p className={styles.sectionSubText}>What others say</p>
           <h2 className={styles.sectionHeadText}>Testimonials.</h2>
         </motion.div>

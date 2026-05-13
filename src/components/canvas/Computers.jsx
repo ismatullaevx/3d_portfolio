@@ -4,9 +4,11 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 import useReducedMotion from "../../hooks/useReducedMotion";
+import usePerformance from "../../hooks/usePerformance";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
+  const isLowEnd = usePerformance();
 
   return (
     <mesh>
@@ -16,8 +18,8 @@ const Computers = ({ isMobile }) => {
         angle={0.12}
         penumbra={1}
         intensity={1}
-        castShadow
-        shadow-mapSize={1024}
+        castShadow={!isLowEnd}
+        shadow-mapSize={isLowEnd ? 256 : 1024}
       />
       <pointLight intensity={1} />
       <primitive
@@ -33,6 +35,7 @@ const Computers = ({ isMobile }) => {
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const isLowEnd = usePerformance();
 
   useEffect(() => {
     // Add a listener for changes to the screen size
@@ -57,9 +60,9 @@ const ComputersCanvas = () => {
 
   return (
     <Canvas
-      frameloop="always"
-      shadows
-      dpr={[1, 1.5]}
+      frameloop={isLowEnd ? "demand" : "always"}
+      shadows={!isLowEnd}
+      dpr={isLowEnd ? 1 : [1, 1.5]}
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true, powerPreference: "high-performance" }}
     >

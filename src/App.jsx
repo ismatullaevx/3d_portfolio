@@ -4,6 +4,7 @@ import { MotionConfig } from "framer-motion";
 
 import { Navbar, Hero, ErrorBoundary, ComponentLoader, CanvasErrorFallback } from "./components";
 import DeferredStarsCanvas from "./components/DeferredStarsCanvas.jsx";
+import SEO from "./components/SEO.jsx";
 
 const About = lazy(() => import("./components/About"));
 const Tech = lazy(() => import("./components/Tech"));
@@ -15,6 +16,7 @@ const Footer = lazy(() => import("./components/Footer"));
 const App = () => {
   return (
     <BrowserRouter>
+      <SEO />
       <ErrorBoundary>
         <MotionConfig reducedMotion="user">
           <div className="relative z-0 bg-primary">

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Khojiakbar Ismatullaev Portfolio</title>
+  <desc id="desc">Professional portfolio preview for full stack web development work.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070814"/>
+      <stop offset="0.48" stop-color="#11132c"/>
+      <stop offset="1" stop-color="#0b2f34"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00cea8"/>
+      <stop offset="1" stop-color="#915eff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <path d="M0 520 C200 460 330 570 530 505 S850 345 1200 430 L1200 630 L0 630 Z" fill="#11152f" opacity="0.7"/>
+  <path d="M780 0 L1200 0 L1200 630 L980 630 C915 510 875 410 865 315 C852 194 820 95 780 0 Z" fill="#0f766e" opacity="0.18"/>
+  <g filter="url(#shadow)">
+    <rect x="96" y="96" width="1008" height="438" rx="34" fill="#101225" opacity="0.92"/>
+    <rect x="96" y="96" width="1008" height="438" rx="34" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+  </g>
+  <rect x="142" y="146" width="156" height="8" rx="4" fill="url(#accent)"/>
+  <text x="142" y="235" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700">
+    Khojiakbar Ismatullaev
+  </text>
+  <text x="142" y="306" fill="#d7d9ef" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">
+    Full Stack Web Developer
+  </text>
+  <text x="142" y="368" fill="#bfc3dc" font-family="Arial, Helvetica, sans-serif" font-size="26">
+    React, Vue, Symfony, PHP, Node.js and modern web applications.
+  </text>
+  <text x="142" y="438" fill="#8ef2de" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">
+    powermap.uz  /  watermap.uz  /  product-focused interfaces
+  </text>
+  <circle cx="970" cy="224" r="82" fill="url(#accent)" opacity="0.95"/>
+  <text x="970" y="251" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="74" font-weight="700">
+    KI
+  </text>
+  <text x="970" y="438" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">
+    Portfolio
+  </text>
+</svg>

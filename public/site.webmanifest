@@ -1,0 +1,26 @@
+{
+  "name": "Khojiakbar Ismatullaev Portfolio",
+  "short_name": "Khojiakbar",
+  "description": "Full stack web developer portfolio featuring React, Vue, Symfony, PHP and Node.js projects.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "icons": [
+    {
+      "src": "/favicons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

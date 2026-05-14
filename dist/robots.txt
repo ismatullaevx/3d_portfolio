@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ismatullaevx.vercel.app/sitemap.xml

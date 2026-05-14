@@ -73,26 +73,24 @@ const About = () => {
 
       <motion.div
         variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("", "", 0.1, 1)}
-        className="flex flex-col-reverse items-center gap-8 min-[1000px]:flex-row min-[1000px]:gap-12"
+        className="mt-8 flex flex-col-reverse items-center gap-8 sm:mt-10 sm:gap-10 min-[1000px]:mt-12 min-[1000px]:flex-row min-[1000px]:items-start min-[1000px]:gap-12"
       >
-        <p className="mt-2 w-full text-[15px] leading-7 text-secondary sm:mt-4 sm:text-[16px] sm:leading-8 min-[1000px]:max-w-xl lg:text-[17px]">
-          Hey! I&apos;m Khojiakbar. I&apos;m 18 years old and I&apos;m from Namangan,
-          Uzbekistan. I have been actively engaged in web development for almost
-          1 year and constantly study new technologies and try to apply them.
-          I&apos;m skilled web full stack developer with experience in React, Vue,
-          Symfony and PHP. I can and love to work in a team. I can organize
-          myself for remote work. The experience gained is not just in the
-          treasury of skills, but is actively used in product development. I
-          like to learn from more experienced colleagues, in addition to
-          self-study.
+        <p className="w-full text-[15px] leading-7 text-secondary sm:text-[16px] sm:leading-8 min-[1000px]:max-w-xl lg:text-[17px]">
+          Hey! I&apos;m Khojiakbar, an 18-year-old full-stack web developer from
+          Namangan, Uzbekistan. I&apos;ve been actively building web projects for
+          almost a year, constantly learning new technologies and applying them
+          in real products. I work with React, Vue, Symfony, and PHP, and I enjoy
+          turning ideas into clean, useful digital experiences. I&apos;m comfortable
+          collaborating with a team, organizing myself for remote work, and
+          learning from more experienced developers alongside my own self-study.
         </p>
 
         <Tilt 
-          className="m-auto h-auto w-full max-w-[320px] xs:max-w-[350px]"
+          className="mx-auto h-auto w-full max-w-[250px] xs:max-w-[280px] sm:max-w-[320px] min-[1000px]:mx-0"
           options={tiltOptions}
         >
-          <div className="green-pink-gradient mx-auto w-full max-w-[280px] rounded-[20px] p-[1px] shadow-card">
-            <div className="flex aspect-square min-h-[220px] flex-col items-center justify-evenly overflow-hidden rounded-[20px] bg-tertiary">
+          <div className="green-pink-gradient mx-auto w-full rounded-[20px] p-[1px] shadow-card">
+            <div className="flex aspect-square min-h-[200px] flex-col items-center justify-evenly overflow-hidden rounded-[20px] bg-tertiary xs:min-h-[220px]">
               <ModernImage
                 src={mrKhojiakbar}
                 alt="MyPhoto"

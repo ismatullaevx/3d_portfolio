@@ -49,7 +49,7 @@ function Navbar() {
             src={logo}
             alt="logo"
             className="h-9 w-9 shrink-0 object-contain"
-            fetchPriority="high"
+            fetchpriority="high"
           />
           <p className="flex min-w-0 cursor-pointer truncate text-[15px] font-bold text-white xs:text-[17px] sm:text-[18px]">
             Khojiakbar &nbsp;

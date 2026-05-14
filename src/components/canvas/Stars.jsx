@@ -1,17 +1,21 @@
 import { PointMaterial, Points, Preload } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useMemo, useRef } from "react";
 import * as random from "maath/random/dist/maath-random.esm";
 import useReducedMotion from "../../hooks/useReducedMotion";
-import usePerformance from "../../hooks/usePerformance";
+import { useIsLowEnd } from "../../context/PerformanceContext.jsx";
 
 const Stars = (props) => {
   const ref = useRef();
-  const isLowEnd = usePerformance();
+  const isLowEnd = useIsLowEnd();
   const shouldReduceMotion = useReducedMotion();
 
-  const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(isLowEnd ? 1500 : 5001), { radius: 1.2 })
+  const sphere = useMemo(
+    () =>
+      random.inSphere(new Float32Array(isLowEnd ? 1500 : 5001), {
+        radius: 1.2,
+      }),
+    [isLowEnd]
   );
 
   useFrame((state, delta) => {
@@ -35,15 +39,16 @@ const Stars = (props) => {
     </group>
   );
 };
+
 const StarsCanvas = () => {
-  const isLowEnd = usePerformance();
+  const isLowEnd = useIsLowEnd();
 
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas 
+      <Canvas
         camera={{ position: [0, 0, 1] }}
-        dpr={isLowEnd ? 1 : [1, 1.5]} // Performance optimization: limit DPR
-        gl={{ powerPreference: "high-performance", antialias: false }} // Performance optimization
+        dpr={isLowEnd ? 1 : [1, 1.5]}
+        gl={{ powerPreference: "high-performance", antialias: false }}
       >
         <Suspense fallback={null}>
           <Stars />

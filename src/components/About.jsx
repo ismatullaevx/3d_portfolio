@@ -5,9 +5,9 @@ import { styles } from "../styles";
 import { services } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
-import { mrKhojiakbar } from "../assets";
+import mrKhojiakbar from "../assets/mrKhojiakbar.webp";
 import useReducedMotion from "../hooks/useReducedMotion";
-import { ModernImage } from "./";
+import ModernImage from "./ModernImage";
 
 const ServiceCard = ({ index, title, icon }) => {
   const shouldReduceMotion = useReducedMotion();

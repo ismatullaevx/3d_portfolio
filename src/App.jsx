@@ -3,6 +3,7 @@ import React, { Suspense, lazy } from "react";
 import { MotionConfig } from "framer-motion";
 
 import { Navbar, Hero, ErrorBoundary, ComponentLoader, CanvasErrorFallback } from "./components";
+import DeferredStarsCanvas from "./components/DeferredStarsCanvas.jsx";
 
 const About = lazy(() => import("./components/About"));
 const Tech = lazy(() => import("./components/Tech"));
@@ -10,7 +11,6 @@ const Works = lazy(() => import("./components/Works"));
 const CV = lazy(() => import("./components/CV"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
-const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
 
 const App = () => {
   return (
@@ -24,7 +24,7 @@ const App = () => {
                 <Hero />
               </ErrorBoundary>
             </div>
-            
+
             <ErrorBoundary>
               <Suspense fallback={<ComponentLoader />}>
                 <About />
@@ -56,9 +56,7 @@ const App = () => {
                 </Suspense>
               </ErrorBoundary>
               <ErrorBoundary fallback={<CanvasErrorFallback />}>
-                <Suspense fallback={null}>
-                  <StarsCanvas />
-                </Suspense>
+                <DeferredStarsCanvas />
               </ErrorBoundary>
             </div>
 

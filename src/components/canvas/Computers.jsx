@@ -4,11 +4,13 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 import useReducedMotion from "../../hooks/useReducedMotion";
-import usePerformance from "../../hooks/usePerformance";
+import { useIsLowEnd } from "../../context/PerformanceContext.jsx";
+
+useGLTF.preload("./desktop_pc/scene.gltf");
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
-  const isLowEnd = usePerformance();
+  const isLowEnd = useIsLowEnd();
 
   return (
     <mesh>
@@ -35,36 +37,34 @@ const Computers = ({ isMobile }) => {
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
   const shouldReduceMotion = useReducedMotion();
-  const isLowEnd = usePerformance();
+  const isLowEnd = useIsLowEnd();
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
     const mediaQuery = window.matchMedia("(max-width: 500px)");
 
-    // Set the initial value of the `isMobile` state variable
     setIsMobile(mediaQuery.matches);
 
-    // Define a callback function to handle changes to the media query
     const handleMediaQueryChange = (event) => {
       setIsMobile(event.matches);
     };
 
-    // Add the callback function as a listener for changes to the media query
     mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-    // Remove the listener when the component is unmounted
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, []);
 
+  const frameloop =
+    isLowEnd || shouldReduceMotion ? "demand" : "always";
+
   return (
     <Canvas
-      frameloop={isLowEnd ? "demand" : "always"}
+      frameloop={frameloop}
       shadows={!isLowEnd}
       dpr={isLowEnd ? 1 : [1, 1.5]}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true, powerPreference: "high-performance" }}
+      gl={{ powerPreference: "high-performance" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls

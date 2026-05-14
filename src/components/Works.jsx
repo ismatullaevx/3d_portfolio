@@ -1,24 +1,26 @@
 import { motion } from "framer-motion";
 import { Tilt } from "react-tilt";
-import React from "react";
+/* eslint-disable react-refresh/only-export-components -- memo + SectionWrapper HOC */
+import React, { memo } from "react";
 
 import { styles } from "../styles";
-import { github } from "../assets";
+import github from "../assets/github.webp";
 import { SectionWrapper } from "../hoc";
 import { myGithub, projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import useReducedMotion from "../hooks/useReducedMotion";
-import { ModernImage } from "./";
+import ModernImage from "./ModernImage";
 
-const ProjectCard = ({
-  index,
-  name,
-  description,
-  tags,
-  image,
-  source_code_link,
-  app_link,
-}) => {
+const ProjectCard = memo(
+  ({
+    index,
+    name,
+    description,
+    tags,
+    image,
+    source_code_link,
+    app_link,
+  }) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -73,7 +75,8 @@ const ProjectCard = ({
       </Tilt>
     </motion.div>
   );
-};
+});
+ProjectCard.displayName = "ProjectCard";
 
 const Works = () => {
   const shouldReduceMotion = useReducedMotion();

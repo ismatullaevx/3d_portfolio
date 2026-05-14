@@ -1,17 +1,40 @@
 import { motion } from "framer-motion";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { styles } from "../styles";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState, memo } from "react";
 import ComponentLoader from "./ComponentLoader";
 import { ComputersCanvas } from "./canvas";
 import ErrorBoundary from "./ErrorBoundary";
 import CanvasErrorFallback from "./CanvasErrorFallback";
 import useReducedMotion from "../hooks/useReducedMotion";
-import usePerformance from "../hooks/usePerformance";
+import { useIsLowEnd } from "../context/PerformanceContext.jsx";
 
-const Hero = () => {
+function Hero() {
   const shouldReduceMotion = useReducedMotion();
-  const isLowEnd = usePerformance();
+  const isLowEnd = useIsLowEnd();
+  const [showCanvas, setShowCanvas] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const enable = () => {
+      if (!cancelled) setShowCanvas(true);
+    };
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(enable, { timeout: 2200 });
+      return () => {
+        cancelled = true;
+        window.cancelIdleCallback(id);
+      };
+    }
+
+    const id = window.setTimeout(enable, 450);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(id);
+    };
+  }, []);
+
   const [text] = useTypewriter({
     words: [
       "I'm Web Full Stack Developer",
@@ -46,9 +69,18 @@ const Hero = () => {
       </div>
 
       <ErrorBoundary fallback={<CanvasErrorFallback />}>
-        <Suspense fallback={<ComponentLoader />}>
-          <ComputersCanvas />
-        </Suspense>
+        {showCanvas ? (
+          <Suspense fallback={<ComponentLoader />}>
+            <ComputersCanvas />
+          </Suspense>
+        ) : (
+          <div
+            className="absolute inset-0 w-full h-full min-h-[320px] flex items-center justify-center pointer-events-none"
+            aria-hidden
+          >
+            <span className="canvas-loader" />
+          </div>
+        )}
       </ErrorBoundary>
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
@@ -74,6 +106,9 @@ const Hero = () => {
       </div>
     </section>
   );
-};
+}
 
-export default Hero;
+const MemoizedHero = memo(Hero);
+MemoizedHero.displayName = "Hero";
+
+export default MemoizedHero;

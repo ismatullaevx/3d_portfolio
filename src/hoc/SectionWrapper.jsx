@@ -3,6 +3,8 @@ import { styles } from "../styles";
 import { staggerContainer } from "../utils/motion";
 import useReducedMotion from "../hooks/useReducedMotion";
 
+const SECTION_VIEWPORT = { once: true, amount: 0.1 };
+
 const SectionWrapper = (Component, idName) =>
   function HOC() {
     const shouldReduceMotion = useReducedMotion();
@@ -12,7 +14,7 @@ const SectionWrapper = (Component, idName) =>
         variants={shouldReduceMotion ? {} : staggerContainer()}
         initial={shouldReduceMotion ? "show" : "hidden"}
         whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={SECTION_VIEWPORT}
         className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
       >
         <span className="hash-span" id={idName}>

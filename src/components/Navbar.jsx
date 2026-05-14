@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { Link } from "react-router-dom";
 
 import { styles } from "../styles";
-import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { navLinks } from "../constants/nav.js";
+import { prefetchSectionByHashId } from "../utils/sectionPrefetch.js";
+import logo from "../assets/logo.svg";
+import menu from "../assets/menu.svg";
+import close from "../assets/close.svg";
 
-const Navbar = () => {
+function Navbar() {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -20,7 +23,7 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -42,7 +45,12 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt="logo" className="w-9 h-9 object-contain" />
+          <img
+            src={logo}
+            alt="logo"
+            className="w-9 h-9 object-contain"
+            fetchPriority="high"
+          />
           <p className="text-white text-[18px] font-bold cursor-pointer flex ">
             Khojiakbar &nbsp;
             <span className="sm:block hidden"> | Portfolio</span>
@@ -58,7 +66,13 @@ const Navbar = () => {
               } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a
+                href={`#${nav.id}`}
+                onMouseEnter={() => prefetchSectionByHashId(nav.id)}
+                onFocus={() => prefetchSectionByHashId(nav.id)}
+              >
+                {nav.title}
+              </a>
             </li>
           ))}
         </ul>
@@ -88,7 +102,13 @@ const Navbar = () => {
                     setActive(nav.title);
                   }}
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
+                  <a
+                    href={`#${nav.id}`}
+                    onMouseEnter={() => prefetchSectionByHashId(nav.id)}
+                    onFocus={() => prefetchSectionByHashId(nav.id)}
+                  >
+                    {nav.title}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -97,6 +117,9 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
+}
 
-export default Navbar;
+const MemoizedNavbar = memo(Navbar);
+MemoizedNavbar.displayName = "Navbar";
+
+export default MemoizedNavbar;

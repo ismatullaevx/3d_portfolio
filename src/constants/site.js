@@ -1,6 +1,6 @@
 export const siteUrl =
   import.meta.env.VITE_SITE_URL?.replace(/\/$/, "") ||
-  "https://ismatullaevx.vercel.app";
+  "https://ismatullaev.uz";
 
 export const authorName = "Khojiakbar Ismatullaev";
 export const authorFirstName = "Khojiakbar";

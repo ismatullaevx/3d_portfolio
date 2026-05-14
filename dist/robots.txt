@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ismatullaevx.vercel.app/sitemap.xml
+Sitemap: https://ismatullaev.uz/sitemap.xml

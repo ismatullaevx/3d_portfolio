@@ -6,46 +6,63 @@ import { services } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import mrKhojiakbar from "../assets/mrKhojiakbar.webp";
+import useMediaQuery from "../hooks/useMediaQuery";
 import useReducedMotion from "../hooks/useReducedMotion";
 import ModernImage from "./ModernImage";
 
 const ServiceCard = ({ index, title, icon }) => {
   const shouldReduceMotion = useReducedMotion();
+  const isCompact = useMediaQuery("(max-width: 768px)");
+
+  const cardVariants = shouldReduceMotion
+    ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
+    : fadeIn(isCompact ? "up" : "right", "spring", isCompact ? index * 0.12 : 0.5 * index, isCompact ? 0.55 : 0.75);
+
+  const tiltOptions = {
+    max: shouldReduceMotion || isCompact ? 0 : 35,
+    scale: 1,
+    speed: shouldReduceMotion || isCompact ? 0 : 450,
+  };
 
   return (
-    <Tilt 
-      options={{ 
-        max: shouldReduceMotion ? 0 : 45, 
-        scale: shouldReduceMotion ? 1 : 1, 
-        speed: shouldReduceMotion ? 0 : 450 
-      }}
+    <motion.div
+      variants={cardVariants}
       className="w-full xs:w-[250px]"
     >
-      <motion.div
-        variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("right", "spring", 0.5 * index, 0.75)}
-        className="green-pink-gradient w-full rounded-[20px] p-[1px] shadow-card"
+      <Tilt 
+        options={tiltOptions}
+        className="w-full"
       >
-        <div
-          className="flex min-h-[220px] flex-col items-center justify-evenly rounded-[20px] bg-tertiary px-6 py-5 sm:min-h-[260px] sm:px-10 lg:min-h-[280px] lg:px-12"
-        >
-          {typeof icon === "string" ? (
-            <ModernImage src={icon} alt={title} className="w-16 h-16 object-contain" />
-          ) : (
-            <div className="text-[60px] text-white">
-              {React.createElement(icon)}
-            </div>
-          )}
-          <h3 className="text-center text-[18px] font-bold text-white sm:text-[20px]">
-            {title}
-          </h3>
+        <div className="green-pink-gradient w-full rounded-[20px] p-[1px] shadow-card">
+          <div
+            className="flex min-h-[220px] flex-col items-center justify-evenly rounded-[20px] bg-tertiary px-6 py-5 sm:min-h-[260px] sm:px-10 lg:min-h-[280px] lg:px-12"
+          >
+            {typeof icon === "string" ? (
+              <ModernImage src={icon} alt={title} className="h-16 w-16 object-contain" />
+            ) : (
+              <div className="text-[60px] text-white">
+                {React.createElement(icon)}
+              </div>
+            )}
+            <h3 className="text-center text-[18px] font-bold text-white sm:text-[20px]">
+              {title}
+            </h3>
+          </div>
         </div>
-      </motion.div>
-    </Tilt>
+      </Tilt>
+    </motion.div>
   );
 };
 
 const About = () => {
   const shouldReduceMotion = useReducedMotion();
+  const isCompact = useMediaQuery("(max-width: 768px)");
+
+  const tiltOptions = {
+    max: shouldReduceMotion || isCompact ? 0 : 35,
+    scale: 1,
+    speed: shouldReduceMotion || isCompact ? 0 : 450,
+  };
 
   return (
     <>
@@ -72,11 +89,7 @@ const About = () => {
 
         <Tilt 
           className="m-auto h-auto w-full max-w-[320px] xs:max-w-[350px]"
-          options={{ 
-            max: shouldReduceMotion ? 0 : 45, 
-            scale: shouldReduceMotion ? 1 : 1, 
-            speed: shouldReduceMotion ? 0 : 450 
-          }}
+          options={tiltOptions}
         >
           <div className="green-pink-gradient mx-auto w-full max-w-[280px] rounded-[20px] p-[1px] shadow-card">
             <div className="flex aspect-square min-h-[220px] flex-col items-center justify-evenly overflow-hidden rounded-[20px] bg-tertiary">

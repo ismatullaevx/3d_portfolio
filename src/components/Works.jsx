@@ -8,6 +8,7 @@ import github from "../assets/github.webp";
 import { SectionWrapper } from "../hoc";
 import { myGithub, projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+import useMediaQuery from "../hooks/useMediaQuery";
 import useReducedMotion from "../hooks/useReducedMotion";
 import ModernImage from "./ModernImage";
 
@@ -22,15 +23,22 @@ const ProjectCard = memo(
     app_link,
   }) => {
   const shouldReduceMotion = useReducedMotion();
+  const isCompact = useMediaQuery("(max-width: 768px)");
+
+  const cardVariants = shouldReduceMotion
+    ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
+    : fadeIn("up", "spring", isCompact ? index * 0.12 : index * 0.5, isCompact ? 0.55 : 0.75);
+
+  const tiltOptions = {
+    max: shouldReduceMotion || isCompact ? 0 : 35,
+    scale: 1,
+    speed: shouldReduceMotion || isCompact ? 0 : 450,
+  };
 
   return (
-    <motion.div className="h-full" variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("up", "spring", index * 0.5, 0.75)}>
+    <motion.div className="h-full" variants={cardVariants}>
       <Tilt
-        options={{ 
-          max: shouldReduceMotion ? 0 : 45, 
-          scale: shouldReduceMotion ? 1 : 1, 
-          speed: shouldReduceMotion ? 0 : 450 
-        }}
+        options={tiltOptions}
         className="flex h-full w-full flex-col rounded-2xl bg-tertiary p-4 shadow-card sm:p-5"
       >
         <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl sm:h-[230px] sm:aspect-auto">

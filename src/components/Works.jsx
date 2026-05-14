@@ -44,13 +44,13 @@ const ProjectCard = memo(
             <button
               type="button"
               onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient flex h-11 w-11 cursor-pointer items-center justify-center rounded-full"
+              className="black-gradient flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/10 shadow-lg transition duration-200 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
               aria-label={`Open ${name} source code`}
             >
               <ModernImage
                 src={github}
                 alt="source code"
-                className="h-1/2 w-1/2 object-contain"
+                className="block h-6 w-6 object-contain"
               />
             </button>
           </div>
@@ -119,11 +119,11 @@ const Works = () => {
           className="green-pink-gradient mt-4 flex cursor-pointer select-none items-center justify-center rounded-full p-[1px]"
           onClick={() => window.open(myGithub, "_blank")}
         >
-          <div className="flex min-h-12 items-center justify-evenly rounded-full bg-tertiary px-4 py-2">
+          <div className="flex min-h-12 items-center justify-center gap-3 rounded-full bg-tertiary px-5 py-2">
             <ModernImage
               src={github}
               alt="source code"
-              className="w-[40px] h-[40px] object-contain"
+              className="block h-9 w-9 object-contain"
             />
 
             <p className="text-[18px] sm:text-[21px]">GitHub</p>

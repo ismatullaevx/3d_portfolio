@@ -11,6 +11,7 @@ import {
 import CanvasLoader from "../Loader";
 import useReducedMotion from "../../hooks/useReducedMotion";
 import ModernImage from "../ModernImage";
+import { useIsLowEnd } from "../../context/PerformanceContext.jsx";
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
@@ -45,34 +46,27 @@ const Ball = (props) => {
 
 const BallCanvas = ({ icon }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const isLowEnd = useIsLowEnd();
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
 
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
+    const update = () => setIsMobile(mediaQuery.matches);
 
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
+    update();
+    mediaQuery.addEventListener("change", update);
 
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      mediaQuery.removeEventListener("change", update);
     };
   }, []);
 
   const shouldReduceMotion = useReducedMotion();
 
-  if (isMobile || shouldReduceMotion) {
+  if (isMobile || shouldReduceMotion || isLowEnd) {
     return (
-      <div className="flex justify-center items-center w-full h-full bg-[#fff8eb] rounded-full shadow-card">
-        <ModernImage src={icon} alt="ball" className="w-16 h-16 object-contain" />
+      <div className="flex h-full w-full items-center justify-center rounded-full bg-[#fff8eb] shadow-card">
+        <ModernImage src={icon} alt="ball" className="h-12 w-12 object-contain xs:h-14 xs:w-14 sm:h-16 sm:w-16" />
       </div>
     );
   }
@@ -81,7 +75,7 @@ const BallCanvas = ({ icon }) => {
     <Canvas
       frameloop="demand"
       dpr={[1, 1.5]}
-      gl={{ preserveDrawingBuffer: true, powerPreference: "high-performance" }}
+      gl={{ preserveDrawingBuffer: true, powerPreference: "high-performance", antialias: false }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />

@@ -13,7 +13,7 @@ const Stars = (props) => {
 
   const sphere = useMemo(
     () =>
-      random.inSphere(new Float32Array(isLowEnd ? 1500 : 5001), {
+      random.inSphere(new Float32Array(isLowEnd ? 900 : 3000), {
         radius: 1.2,
       }),
     [isLowEnd]
@@ -45,8 +45,9 @@ const StarsCanvas = () => {
   const isLowEnd = useIsLowEnd();
 
   return (
-    <div className="w-full h-auto absolute inset-0 z-[-1]">
+    <div className="absolute inset-0 z-[-1] h-full w-full">
       <Canvas
+        frameloop={isLowEnd ? "demand" : "always"}
         camera={{ position: [0, 0, 1] }}
         dpr={isLowEnd ? 1 : [1, 1.5]}
         gl={{ powerPreference: "high-performance", antialias: false }}

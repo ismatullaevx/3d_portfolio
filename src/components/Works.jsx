@@ -24,42 +24,44 @@ const ProjectCard = memo(
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("up", "spring", index * 0.5, 0.75)}>
+    <motion.div className="h-full" variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Tilt
         options={{ 
           max: shouldReduceMotion ? 0 : 45, 
           scale: shouldReduceMotion ? 1 : 1, 
           speed: shouldReduceMotion ? 0 : 450 
         }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+        className="flex h-full w-full flex-col rounded-2xl bg-tertiary p-4 shadow-card sm:p-5"
       >
-        <div className="relative w-full h-[230px]">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl sm:h-[230px] sm:aspect-auto">
           <ModernImage
             src={image}
             alt="project_image"
-            className="w-full h-full object-cover rounded-2xl"
+            className="h-full w-full rounded-2xl object-cover"
           />
 
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <div
+          <div className="card-img_hover absolute inset-0 m-3 flex justify-end">
+            <button
+              type="button"
               onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+              className="black-gradient flex h-11 w-11 cursor-pointer items-center justify-center rounded-full"
+              aria-label={`Open ${name} source code`}
             >
               <ModernImage
                 src={github}
                 alt="source code"
-                className="w-1/2 h-1/2 object-contain"
+                className="h-1/2 w-1/2 object-contain"
               />
-            </div>
+            </button>
           </div>
         </div>
 
         <div
-          className="mt-5 cursor-pointer"
+          className="mt-5 flex-1 cursor-pointer"
           onClick={() => window.open(app_link, "_blank")}
         >
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+          <h3 className="text-[21px] font-bold text-white sm:text-[24px]">{name}</h3>
+          <p className="mt-2 text-[14px] leading-6 text-secondary">{description}</p>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
@@ -88,10 +90,10 @@ const Works = () => {
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
       </motion.div>
 
-      <div className="w-full flex">
+      <div className="flex w-full">
         <motion.p
           variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("", "", 0.1, 1)}
-          className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
+          className="mt-3 max-w-3xl text-[15px] leading-7 text-secondary sm:text-[16px] sm:leading-8 lg:text-[17px]"
         >
           Following projects showcases my skills and experience through
           real-world examples of my work. Each project is briefly described with
@@ -101,30 +103,30 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-7 justify-center">
+      <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-16 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3 xl:gap-7">
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
       </div>
 
-      <div className="w-full flex flex-col items-center justify-center">
-        <p className="mt-24 text-secondary text-[21px] max-w-3xl leading-[30px] text-center">
+      <div className="flex w-full flex-col items-center justify-center">
+        <p className="mt-16 max-w-3xl text-center text-[17px] leading-7 text-secondary sm:mt-20 sm:text-[19px] lg:mt-24 lg:text-[21px] lg:leading-[30px]">
           Did you like it? This and much more you can find in my GitHub at the
           link below.
         </p>
 
         <div
-          className="green-pink-gradient p-[1px] rounded-full flex justify-center items-center cursor-pointer mt-4 select-none"
+          className="green-pink-gradient mt-4 flex cursor-pointer select-none items-center justify-center rounded-full p-[1px]"
           onClick={() => window.open(myGithub, "_blank")}
         >
-          <div className="bg-tertiary rounded-full px-3 py-2 flex justify-evenly items-center">
+          <div className="flex min-h-12 items-center justify-evenly rounded-full bg-tertiary px-4 py-2">
             <ModernImage
               src={github}
               alt="source code"
               className="w-[40px] h-[40px] object-contain"
             />
 
-            <p className="text-[21px]">GitHub</p>
+            <p className="text-[18px] sm:text-[21px]">GitHub</p>
           </div>
         </div>
       </div>

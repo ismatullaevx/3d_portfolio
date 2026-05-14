@@ -32,7 +32,7 @@ class ErrorBoundary extends React.Component {
             Something went wrong
           </h2>
           <p className="text-secondary text-[16px] mb-6">
-            The 3D content couldn't be loaded on this device.
+            The 3D content could not be loaded on this device.
           </p>
           <button
             className="bg-tertiary py-2 px-6 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl"

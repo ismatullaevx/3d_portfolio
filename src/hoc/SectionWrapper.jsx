@@ -15,7 +15,7 @@ const SectionWrapper = (Component, idName) =>
         initial={shouldReduceMotion ? "show" : "hidden"}
         whileInView="show"
         viewport={SECTION_VIEWPORT}
-        className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+        className={`${styles.padding} w-full max-w-7xl mx-auto relative z-0 overflow-x-clip`}
       >
         <span className="hash-span" id={idName}>
           &nbsp;

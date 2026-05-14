@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useRef, useState, Suspense } from "react";
+/* eslint-disable react-refresh/only-export-components -- SectionWrapper HOC export */
 import ComponentLoader from "./ComponentLoader";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
@@ -76,11 +77,11 @@ const Contact = () => {
 
   return (
     <div
-      className={`xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden`}
+      className="flex flex-col-reverse gap-8 overflow-hidden xl:mt-12 xl:flex-row xl:gap-10"
     >
       <motion.div
         variants={shouldReduceMotion ? { hidden: { x: 0, y: 0 }, show: { x: 0, y: 0 } } : slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
+        className="flex-[0.75] rounded-2xl bg-black-100 p-5 xs:p-6 sm:p-8"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -88,39 +89,39 @@ const Contact = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className="mt-12 flex flex-col gap-8"
+          className="mt-8 flex flex-col gap-5 sm:mt-10 sm:gap-7 lg:mt-12 lg:gap-8"
         >
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Name</span>
+            <span className="mb-3 font-medium text-white sm:mb-4">Your Name</span>
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
               placeholder="What's your name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="min-h-12 rounded-lg border-none bg-tertiary px-4 py-3 font-medium text-white outline-none placeholder:text-secondary focus:ring-2 focus:ring-[#915EFF] sm:px-6 sm:py-4"
             />
           </label>
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Email / Phone</span>
+            <span className="mb-3 font-medium text-white sm:mb-4">Email / Phone</span>
             <input
               type="text"
               name="emailOrPhone"
               value={form.emailOrPhone}
               onChange={handleChange}
               placeholder="What's your email or phone number?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="min-h-12 rounded-lg border-none bg-tertiary px-4 py-3 font-medium text-white outline-none placeholder:text-secondary focus:ring-2 focus:ring-[#915EFF] sm:px-6 sm:py-4"
             />
           </label>
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Message</span>
+            <span className="mb-3 font-medium text-white sm:mb-4">Your Message</span>
             <textarea
-              rows="7"
+              rows="6"
               name="message"
               value={form.message}
               onChange={handleChange}
               placeholder="What do you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="min-h-[150px] resize-y rounded-lg border-none bg-tertiary px-4 py-3 font-medium text-white outline-none placeholder:text-secondary focus:ring-2 focus:ring-[#915EFF] sm:min-h-[190px] sm:px-6 sm:py-4"
             />
           </label>
 
@@ -133,7 +134,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl disabled:cursor-wait disabled:opacity-80 flex items-center gap-3"
+            className="flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-tertiary px-8 py-3 font-bold text-white shadow-md shadow-primary outline-none transition-colors hover:bg-[#1d163d] disabled:cursor-wait disabled:opacity-80 xs:w-fit"
           >
             {loading && <span className="button-loading-ring" aria-hidden="true" />}
             {loading ? "Sending..." : "Send"}
@@ -143,7 +144,7 @@ const Contact = () => {
 
       <motion.div
         variants={shouldReduceMotion ? { hidden: { x: 0, y: 0 }, show: { x: 0, y: 0 } } : slideIn("right", "tween", 0.2, 1)}
-        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
+        className="h-[280px] xs:h-[330px] md:h-[460px] xl:h-auto xl:flex-1"
       >
         <ErrorBoundary fallback={<CanvasErrorFallback />}>
           <Suspense

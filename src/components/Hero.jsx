@@ -56,21 +56,21 @@ function Hero() {
   });
 
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
+    <section className="relative mx-auto h-[100svh] min-h-[620px] w-full overflow-hidden sm:min-h-[700px] lg:min-h-[760px]">
       <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        className={`pointer-events-none absolute inset-x-0 top-[88px] z-10 mx-auto flex max-w-7xl flex-row items-start gap-3 sm:top-[120px] sm:gap-5 ${styles.paddingX}`}
       >
-        <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
-          <div className="w-1 sm:h-80 h-40 violet-gradient" />
+        <div className="mt-4 flex flex-col items-center justify-center sm:mt-5">
+          <div className="h-4 w-4 rounded-full bg-[#915EFF] sm:h-5 sm:w-5" />
+          <div className="violet-gradient h-36 w-1 xs:h-44 sm:h-72 lg:h-80" />
         </div>
 
         {contentReady ? (
-          <div className="transition-opacity duration-300">
+          <div className="max-w-[calc(100vw-4rem)] transition-opacity duration-300 sm:max-w-2xl">
             <h1 className={`${styles.heroHeadText} text-white`}>
               Hi, I&apos;m <span className="text-[#915EFF]">Khojiakbar</span>
             </h1>
-            <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-lg`}>
+            <p className={`${styles.heroSubText} mt-3 max-w-lg text-white-100`}>
               {shouldReduceMotion ? "I'm Web Full Stack Developer" : text}
               {!shouldReduceMotion && <Cursor cursorColor="#915eff" />}
             </p>
@@ -86,7 +86,7 @@ function Hero() {
             fallback={
               <ComponentLoader
                 canvas
-                className="absolute inset-0 w-full h-full min-h-[320px]"
+                className="absolute inset-0 h-full min-h-[320px] w-full"
               />
             }
           >
@@ -94,7 +94,7 @@ function Hero() {
           </Suspense>
         ) : (
           <div
-            className="absolute inset-0 w-full h-full min-h-[320px] flex items-center justify-center pointer-events-none"
+            className="pointer-events-none absolute inset-0 flex h-full min-h-[320px] w-full items-center justify-center"
             aria-hidden
           >
             <CanvasLoadingState label="Preparing scene" />
@@ -102,9 +102,9 @@ function Hero() {
         )}
       </ErrorBoundary>
 
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
-        <a href="#about">
-          <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
+      <div className="absolute bottom-8 z-10 flex w-full items-center justify-center sm:bottom-10">
+        <a href="#about" className="flex min-h-12 min-w-12 items-center justify-center" aria-label="Scroll to about section">
+          <div className="flex h-[58px] w-[32px] items-start justify-center rounded-3xl border-[3px] border-secondary p-2 sm:h-[64px] sm:w-[35px] sm:border-4">
             <motion.div
               animate={
                 shouldReduceMotion || isLowEnd

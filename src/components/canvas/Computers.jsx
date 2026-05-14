@@ -8,9 +8,15 @@ import { useIsLowEnd } from "../../context/PerformanceContext.jsx";
 
 useGLTF.preload("./desktop_pc/scene.gltf");
 
-const Computers = ({ isMobile }) => {
+const Computers = ({ isMobile, isTablet }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
   const isLowEnd = useIsLowEnd();
+  const scale = isMobile ? 0.52 : isTablet ? 0.62 : 0.75;
+  const position = isMobile
+    ? [0, -3.05, -2.7]
+    : isTablet
+      ? [0, -3.15, -2.05]
+      : [0, -3.25, -1.5];
 
   return (
     <mesh>
@@ -26,8 +32,8 @@ const Computers = ({ isMobile }) => {
       <pointLight intensity={1} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        scale={scale}
+        position={position}
         rotation={[-0.01, -0.4, -0.1]}
       />
     </mesh>
@@ -36,45 +42,51 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const isLowEnd = useIsLowEnd();
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    const mobileQuery = window.matchMedia("(max-width: 640px)");
+    const tabletQuery = window.matchMedia("(max-width: 1024px)");
 
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const update = () => {
+      setIsMobile(mobileQuery.matches);
+      setIsTablet(tabletQuery.matches);
     };
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    update();
+    mobileQuery.addEventListener("change", update);
+    tabletQuery.addEventListener("change", update);
 
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      mobileQuery.removeEventListener("change", update);
+      tabletQuery.removeEventListener("change", update);
     };
   }, []);
 
   const frameloop =
-    isLowEnd || shouldReduceMotion ? "demand" : "always";
+    isLowEnd || shouldReduceMotion || isMobile ? "demand" : "always";
 
   return (
     <Canvas
       frameloop={frameloop}
       shadows={!isLowEnd}
-      dpr={isLowEnd ? 1 : [1, 1.5]}
-      camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ powerPreference: "high-performance" }}
+      dpr={isLowEnd || isMobile ? 1 : [1, 1.5]}
+      camera={{ position: isMobile ? [18, 3, 6] : [20, 3, 5], fov: isMobile ? 31 : 25 }}
+      gl={{ powerPreference: "high-performance", antialias: !isMobile }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          autoRotate={!shouldReduceMotion}
-          autoRotateSpeed={0.5}
+          autoRotate={!shouldReduceMotion && !isLowEnd && !isMobile}
+          autoRotateSpeed={isTablet ? 0.35 : 0.5}
           enableZoom={false}
+          enablePan={false}
+          enableDamping={!isMobile}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers isMobile={isMobile} />
+        <Computers isMobile={isMobile} isTablet={isTablet} />
       </Suspense>
 
       <Preload all />

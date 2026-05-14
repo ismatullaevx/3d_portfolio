@@ -19,14 +19,14 @@ const ServiceCard = ({ index, title, icon }) => {
         scale: shouldReduceMotion ? 1 : 1, 
         speed: shouldReduceMotion ? 0 : 450 
       }}
-      className="xs:w-[250px] w-full"
+      className="w-full xs:w-[250px]"
     >
       <motion.div
         variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("right", "spring", 0.5 * index, 0.75)}
-        className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
+        className="green-pink-gradient w-full rounded-[20px] p-[1px] shadow-card"
       >
         <div
-          className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
+          className="flex min-h-[220px] flex-col items-center justify-evenly rounded-[20px] bg-tertiary px-6 py-5 sm:min-h-[260px] sm:px-10 lg:min-h-[280px] lg:px-12"
         >
           {typeof icon === "string" ? (
             <ModernImage src={icon} alt={title} className="w-16 h-16 object-contain" />
@@ -35,7 +35,7 @@ const ServiceCard = ({ index, title, icon }) => {
               {React.createElement(icon)}
             </div>
           )}
-          <h3 className="text-white text-[20px] font-bold text-center">
+          <h3 className="text-center text-[18px] font-bold text-white sm:text-[20px]">
             {title}
           </h3>
         </div>
@@ -56,9 +56,9 @@ const About = () => {
 
       <motion.div
         variants={shouldReduceMotion ? { hidden: { opacity: 1 }, show: { opacity: 1 } } : fadeIn("", "", 0.1, 1)}
-        className="flex items-center min-[1000px]:flex-row flex-col-reverse"
+        className="flex flex-col-reverse items-center gap-8 min-[1000px]:flex-row min-[1000px]:gap-12"
       >
-        <p className="mt-4 text-secondary text-[17px] min-[1000px]:max-w-lg w-full leading-[30px]">
+        <p className="mt-2 w-full text-[15px] leading-7 text-secondary sm:mt-4 sm:text-[16px] sm:leading-8 min-[1000px]:max-w-xl lg:text-[17px]">
           Hey! I&apos;m Khojiakbar. I&apos;m 18 years old and I&apos;m from Namangan,
           Uzbekistan. I have been actively engaged in web development for almost
           1 year and constantly study new technologies and try to apply them.
@@ -71,15 +71,15 @@ const About = () => {
         </p>
 
         <Tilt 
-          className="xs:w-[350px] xs:h-[350px] w-full h-full m-auto max-[1000px]:my-14"
+          className="m-auto h-auto w-full max-w-[320px] xs:max-w-[350px]"
           options={{ 
             max: shouldReduceMotion ? 0 : 45, 
             scale: shouldReduceMotion ? 1 : 1, 
             speed: shouldReduceMotion ? 0 : 450 
           }}
         >
-          <div className="xs:w-[280px] w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
-            <div className="bg-tertiary rounded-[20px] min-h-[250px] flex justify-evenly items-center flex-col overflow-hidden">
+          <div className="green-pink-gradient mx-auto w-full max-w-[280px] rounded-[20px] p-[1px] shadow-card">
+            <div className="flex aspect-square min-h-[220px] flex-col items-center justify-evenly overflow-hidden rounded-[20px] bg-tertiary">
               <ModernImage
                 src={mrKhojiakbar}
                 alt="MyPhoto"
@@ -89,7 +89,7 @@ const About = () => {
           </div>
         </Tilt>
       </motion.div>
-      <div className="mt-20 flex flex-wrap gap-10 justify-center">
+      <div className="mt-12 grid grid-cols-1 gap-5 xs:grid-cols-2 sm:mt-16 sm:gap-7 lg:mt-20 lg:flex lg:flex-wrap lg:justify-center lg:gap-10">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

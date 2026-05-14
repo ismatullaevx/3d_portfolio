@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+/* eslint-disable react-refresh/only-export-components -- SectionWrapper HOC export */
 import {
   VerticalTimeline,
   VerticalTimelineElement,

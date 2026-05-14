@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+/* eslint-disable react-refresh/only-export-components -- SectionWrapper HOC export */
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
@@ -9,13 +10,13 @@ import useReducedMotion from "../hooks/useReducedMotion";
 import ModernImage from "./ModernImage";
 
 const Card = ({ text, name }) => (
-  <div className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full select-none">
-    <p className="text-white font-black text-[48px]">&quot;</p>
+  <div className="w-full select-none rounded-3xl bg-black-200 p-6 xs:w-[320px] sm:p-8 lg:p-10">
+    <p className="text-[40px] font-black text-white sm:text-[48px]">&quot;</p>
 
     <div className="mt-1">
-      <p className="text-white tracking-wider text-[18px]">{text}</p>
+      <p className="text-[16px] leading-7 tracking-wider text-white sm:text-[18px]">{text}</p>
 
-      <div className="mt-7 flex justify-between items-center gap-1">
+      <div className="mt-7 flex items-center justify-between gap-1">
         <div className="flex-1 flex flex-col">
           <p className="text-white font-medium text-[16px]">
             <span className="blue-text-gradient">@</span> {name}
@@ -36,9 +37,9 @@ const CV = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="bg-black-100 rounded-[20px]">
+    <div className="rounded-[20px] bg-black-100">
       <div
-        className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
+        className={`rounded-2xl bg-tertiary ${styles.padding} min-h-[240px] sm:min-h-[300px]`}
       >
         <motion.div variants={shouldReduceMotion ? {} : textVariant()}>
           <p className={styles.sectionSubText}>For employers</p>
@@ -46,18 +47,18 @@ const CV = () => {
         </motion.div>
       </div>
       <div
-        className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7 justify-center select-none`}
+        className={`-mt-16 flex select-none flex-wrap justify-center gap-5 pb-10 sm:-mt-20 sm:gap-7 sm:pb-14 ${styles.paddingX}`}
       >
         {myWords.map((myWords, index) => (
           <Card key={myWords.name} index={index} {...myWords} />
         ))}
 
-        <div className="bg-black-200 p-10 rounded-3xl xs:w-[640px] w-full">
-          <div className="flex min-[850px]:flex-row flex-col justify-around items-center">
-            <ModernImage src={CVDuncan} alt="CVDuncan" className="w-[250px]" />
+        <div className="w-full rounded-3xl bg-black-200 p-6 xs:w-[640px] sm:p-8 lg:p-10">
+          <div className="flex flex-col items-center justify-around gap-6 min-[850px]:flex-row">
+            <ModernImage src={CVDuncan} alt="CVDuncan" className="w-[190px] sm:w-[250px]" />
 
-            <a href={MyCV} download>
-              <button className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary text-[21px]">
+            <a href={MyCV} download className="w-full xs:w-auto">
+              <button className="min-h-12 w-full rounded-xl bg-tertiary px-8 py-3 text-[18px] font-bold text-white shadow-md shadow-primary outline-none transition-colors hover:bg-[#1d163d] sm:text-[21px] xs:w-fit">
                 Download CV
               </button>
             </a>

@@ -13,7 +13,7 @@ import { TechBallSkeleton } from "./LoadingSkeletons";
 
 function TechBall({ icon }) {
   return (
-    <div className="w-28 h-28">
+    <div className="h-20 w-20 xs:h-24 xs:w-24 sm:h-28 sm:w-28">
       <ErrorBoundary fallback={<CanvasErrorFallback />}>
         <Suspense fallback={<TechBallSkeleton />}>
           <BallCanvas icon={icon} />
@@ -36,7 +36,7 @@ function Tech() {
         </h2>
       </motion.div>
 
-      <div className="flex flex-row flex-wrap justify-center gap-10 mt-20">
+      <div className="mt-12 grid grid-cols-3 justify-items-center gap-5 xs:grid-cols-4 sm:mt-16 sm:gap-8 md:grid-cols-5 lg:mt-20 lg:flex lg:flex-row lg:flex-wrap lg:justify-center lg:gap-10">
         {technologies.map((technology) => (
           <MemoizedTechBall key={technology.name} icon={technology.icon} />
         ))}

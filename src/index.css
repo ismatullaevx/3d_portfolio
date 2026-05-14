@@ -11,6 +11,35 @@
   color-scheme: dark;
 }
 
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  overflow-x: clip;
+  background: #050816;
+}
+
+body {
+  overscroll-behavior-y: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+[role="button"],
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+canvas {
+  display: block;
+  max-width: 100%;
+  touch-action: pan-y;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -21,9 +50,16 @@
 }
 
 .hash-span {
-  margin-top: -100px;
-  padding-bottom: 100px;
+  margin-top: -88px;
+  padding-bottom: 88px;
   display: block;
+}
+
+@media (min-width: 640px) {
+  .hash-span {
+    margin-top: -100px;
+    padding-bottom: 100px;
+  }
 }
 
 .black-gradient {

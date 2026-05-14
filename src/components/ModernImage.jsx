@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { SkeletonBlock } from "./LoadingSkeletons";
 
 /**
  * A modern image component that supports WebP and AVIF with fallback to original format.
@@ -11,17 +12,40 @@ const ModernImage = ({
   width, 
   height, 
   style, 
+  onLoad,
   ...props 
 }) => {
+  const [loaded, setLoaded] = useState(false);
+  const shellSize =
+    className?.includes("w-full") || className?.includes("h-full")
+      ? "block w-full h-full"
+      : "inline-block";
+  const imageClassName = `${className || ""} ${loaded ? "opacity-100" : "opacity-0"}`;
+  const handleLoad = (event) => {
+    setLoaded(true);
+    onLoad?.(event);
+  };
+
   // If the src is not a string (e.g. it's already an object or undefined), just return a standard img
   if (typeof src !== "string") {
-    return <img src={src} alt={alt} className={className} loading="lazy" {...props} />;
+    return (
+      <span className={`modern-image-shell ${shellSize}`}>
+        {!loaded && <SkeletonBlock className="absolute inset-0 rounded-inherit" />}
+        <img
+          src={src}
+          alt={alt}
+          className={imageClassName}
+          loading="lazy"
+          onLoad={handleLoad}
+          {...props}
+        />
+      </span>
+    );
   }
 
   // Derive AVIF and WebP paths if it's a standard asset path
   // Note: This assumes the assets are in the same directory as the src
   const base = src.substring(0, src.lastIndexOf("."));
-  const extension = src.substring(src.lastIndexOf("."));
   
   // If the src is already a webp, we might want to check for avif
   // In Vite, the imported asset is a URL string.
@@ -34,24 +58,28 @@ const ModernImage = ({
   // However, for dev and many build setups, it works.
   
   return (
-    <picture>
-      <source srcSet={`${base}.avif`} type="image/avif" />
-      <source srcSet={`${base}.webp`} type="image/webp" />
-      <img 
-        src={src} 
-        alt={alt} 
-        className={className} 
-        loading="lazy" 
-        decoding="async"
-        width={width}
-        height={height}
-        style={{ 
-          ...style,
-          contentVisibility: 'auto',
-        }}
-        {...props} 
-      />
-    </picture>
+    <span className={`modern-image-shell ${shellSize}`}>
+      {!loaded && <SkeletonBlock className="absolute inset-0 rounded-inherit" />}
+      <picture>
+        <source srcSet={`${base}.avif`} type="image/avif" />
+        <source srcSet={`${base}.webp`} type="image/webp" />
+        <img 
+          src={src} 
+          alt={alt} 
+          className={imageClassName} 
+          loading="lazy" 
+          decoding="async"
+          width={width}
+          height={height}
+          onLoad={handleLoad}
+          style={{ 
+            ...style,
+            contentVisibility: 'auto',
+          }}
+          {...props} 
+        />
+      </picture>
+    </span>
   );
 };
 

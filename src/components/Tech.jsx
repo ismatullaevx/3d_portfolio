@@ -9,12 +9,13 @@ import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
 import { textVariant } from "../utils/motion";
 import { styles } from "../styles";
+import { TechBallSkeleton } from "./LoadingSkeletons";
 
 function TechBall({ icon }) {
   return (
     <div className="w-28 h-28">
       <ErrorBoundary fallback={<CanvasErrorFallback />}>
-        <Suspense fallback={null}>
+        <Suspense fallback={<TechBallSkeleton />}>
           <BallCanvas icon={icon} />
         </Suspense>
       </ErrorBoundary>

@@ -1,4 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
+import { CanvasLoadingState } from "./LoadingSkeletons";
 
 const StarsCanvas = lazy(() => import("./canvas/Stars"));
 
@@ -32,7 +33,13 @@ const DeferredStarsCanvas = () => {
   if (!active) return null;
 
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <div className="w-full h-auto absolute inset-0 z-[-1]">
+          <CanvasLoadingState compact className="h-full opacity-50" />
+        </div>
+      }
+    >
       <StarsCanvas />
     </Suspense>
   );

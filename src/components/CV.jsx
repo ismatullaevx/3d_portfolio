@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
-import { fadeIn, textVariant } from "../utils/motion";
+import { textVariant } from "../utils/motion";
 import { CVDuncan, MyCV, myWords } from "../constants";
 import useReducedMotion from "../hooks/useReducedMotion";
+import ModernImage from "./ModernImage";
 
-const Card = ({ index, text, name, designation, company, image }) => (
+const Card = ({ text, name }) => (
   <div className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full select-none">
-    <p className="text-white font-black text-[48px]">"</p>
+    <p className="text-white font-black text-[48px]">&quot;</p>
 
     <div className="mt-1">
       <p className="text-white tracking-wider text-[18px]">{text}</p>
@@ -53,7 +54,7 @@ const CV = () => {
 
         <div className="bg-black-200 p-10 rounded-3xl xs:w-[640px] w-full">
           <div className="flex min-[850px]:flex-row flex-col justify-around items-center">
-            <img src={CVDuncan} alt="CVDuncan" className="w-[250px]" />
+            <ModernImage src={CVDuncan} alt="CVDuncan" className="w-[250px]" />
 
             <a href={MyCV} download>
               <button className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary text-[21px]">

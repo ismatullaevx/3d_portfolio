@@ -4,6 +4,7 @@ import React, { Suspense, useMemo, useRef } from "react";
 import * as random from "maath/random/dist/maath-random.esm";
 import useReducedMotion from "../../hooks/useReducedMotion";
 import { useIsLowEnd } from "../../context/PerformanceContext.jsx";
+import CanvasLoader from "../Loader";
 
 const Stars = (props) => {
   const ref = useRef();
@@ -50,7 +51,7 @@ const StarsCanvas = () => {
         dpr={isLowEnd ? 1 : [1, 1.5]}
         gl={{ powerPreference: "high-performance", antialias: false }}
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<CanvasLoader />}>
           <Stars />
         </Suspense>
 

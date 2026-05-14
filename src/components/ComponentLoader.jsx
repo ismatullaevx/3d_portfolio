@@ -1,11 +1,11 @@
 import React from "react";
+import { CanvasLoadingState, SectionSkeleton } from "./LoadingSkeletons";
 
-const ComponentLoader = () => {
-  return (
-    <div className="flex justify-center items-center w-full h-full min-h-[200px]">
-      <span className="canvas-loader"></span>
-    </div>
+const ComponentLoader = ({ variant = "default", canvas = false, className = "" }) =>
+  canvas ? (
+    <CanvasLoadingState className={className} />
+  ) : (
+    <SectionSkeleton variant={variant} />
   );
-};
 
 export default ComponentLoader;

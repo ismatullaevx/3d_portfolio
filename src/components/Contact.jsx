@@ -132,8 +132,10 @@ const Contact = () => {
 
           <button
             type="submit"
-            className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl"
+            disabled={loading}
+            className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl disabled:cursor-wait disabled:opacity-80 flex items-center gap-3"
           >
+            {loading && <span className="button-loading-ring" aria-hidden="true" />}
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
@@ -144,7 +146,11 @@ const Contact = () => {
         className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
         <ErrorBoundary fallback={<CanvasErrorFallback />}>
-          <Suspense fallback={<ComponentLoader />}>
+          <Suspense
+            fallback={
+              <ComponentLoader canvas className="h-full rounded-2xl" />
+            }
+          >
             <EarthCanvas />
           </Suspense>
         </ErrorBoundary>

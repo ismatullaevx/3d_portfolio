@@ -1,0 +1,1 @@
+import{j as r}from"./react-vendor-ab13e14b.js";import{d as a}from"./index-269a5dff.js";import{e as o,H as e}from"./three-vendor-c470718a.js";const i=()=>{const{progress:s}=o();return r.jsx(e,{as:"div",center:!0,children:r.jsx(a,{compact:s>=98,label:`${Math.round(s)}%`,className:"min-w-[140px] min-h-[120px] rounded-2xl"})})};export{i as C};

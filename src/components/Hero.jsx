@@ -3,6 +3,7 @@ import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { styles } from "../styles";
 import React, { Suspense, useEffect, useState, memo } from "react";
 import ComponentLoader from "./ComponentLoader";
+import { CanvasLoadingState, HeroContentSkeleton } from "./LoadingSkeletons";
 import { ComputersCanvas } from "./canvas";
 import ErrorBoundary from "./ErrorBoundary";
 import CanvasErrorFallback from "./CanvasErrorFallback";
@@ -13,9 +14,14 @@ function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const isLowEnd = useIsLowEnd();
   const [showCanvas, setShowCanvas] = useState(false);
+  const [contentReady, setContentReady] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
+    const contentId = window.setTimeout(() => {
+      if (!cancelled) setContentReady(true);
+    }, 120);
+
     const enable = () => {
       if (!cancelled) setShowCanvas(true);
     };
@@ -24,6 +30,7 @@ function Hero() {
       const id = window.requestIdleCallback(enable, { timeout: 2200 });
       return () => {
         cancelled = true;
+        window.clearTimeout(contentId);
         window.cancelIdleCallback(id);
       };
     }
@@ -31,6 +38,7 @@ function Hero() {
     const id = window.setTimeout(enable, 450);
     return () => {
       cancelled = true;
+      window.clearTimeout(contentId);
       window.clearTimeout(id);
     };
   }, []);
@@ -57,20 +65,31 @@ function Hero() {
           <div className="w-1 sm:h-80 h-40 violet-gradient" />
         </div>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I&apos;m <span className="text-[#915EFF]">Khojiakbar</span>
-          </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-lg`}>
-            {shouldReduceMotion ? "I'm Web Full Stack Developer" : text}
-            {!shouldReduceMotion && <Cursor cursorColor="#915eff" />}
-          </p>
-        </div>
+        {contentReady ? (
+          <div className="transition-opacity duration-300">
+            <h1 className={`${styles.heroHeadText} text-white`}>
+              Hi, I&apos;m <span className="text-[#915EFF]">Khojiakbar</span>
+            </h1>
+            <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-lg`}>
+              {shouldReduceMotion ? "I'm Web Full Stack Developer" : text}
+              {!shouldReduceMotion && <Cursor cursorColor="#915eff" />}
+            </p>
+          </div>
+        ) : (
+          <HeroContentSkeleton />
+        )}
       </div>
 
       <ErrorBoundary fallback={<CanvasErrorFallback />}>
         {showCanvas ? (
-          <Suspense fallback={<ComponentLoader />}>
+          <Suspense
+            fallback={
+              <ComponentLoader
+                canvas
+                className="absolute inset-0 w-full h-full min-h-[320px]"
+              />
+            }
+          >
             <ComputersCanvas />
           </Suspense>
         ) : (
@@ -78,7 +97,7 @@ function Hero() {
             className="absolute inset-0 w-full h-full min-h-[320px] flex items-center justify-center pointer-events-none"
             aria-hidden
           >
-            <span className="canvas-loader" />
+            <CanvasLoadingState label="Preparing scene" />
           </div>
         )}
       </ErrorBoundary>

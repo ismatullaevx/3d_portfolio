@@ -26,32 +26,32 @@ const App = () => {
             </div>
 
             <ErrorBoundary>
-              <Suspense fallback={<ComponentLoader />}>
+              <Suspense fallback={<ComponentLoader variant="about" />}>
                 <About />
               </Suspense>
             </ErrorBoundary>
 
             <ErrorBoundary>
-              <Suspense fallback={<ComponentLoader />}>
+              <Suspense fallback={<ComponentLoader variant="tech" />}>
                 <Tech />
               </Suspense>
             </ErrorBoundary>
 
             <ErrorBoundary>
-              <Suspense fallback={<ComponentLoader />}>
+              <Suspense fallback={<ComponentLoader variant="projects" />}>
                 <Works />
               </Suspense>
             </ErrorBoundary>
 
             <ErrorBoundary>
-              <Suspense fallback={<ComponentLoader />}>
+              <Suspense fallback={<ComponentLoader variant="cv" />}>
                 <CV />
               </Suspense>
             </ErrorBoundary>
 
             <div className="relative z-0">
               <ErrorBoundary>
-                <Suspense fallback={<ComponentLoader />}>
+                <Suspense fallback={<ComponentLoader variant="contact" />}>
                   <Contact />
                 </Suspense>
               </ErrorBoundary>
